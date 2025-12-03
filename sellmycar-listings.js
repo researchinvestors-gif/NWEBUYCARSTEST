@@ -198,7 +198,15 @@ const cars = [
                 "images/sellmycarlisting/jaguar/3.jpg",
                 "images/sellmycarlisting/jaguar/4.jpg",
                 "images/sellmycarlisting/jaguar/5.jpg",
-                "images/sellmycarlisting/jaguar/6.jpg"
+                "images/sellmycarlisting/Jaguar/6.jpg",
+                "images/sellmycarlisting/jaguar/7.jpg",
+                "images/sellmycarlisting/jaguar/8.jpg",
+                "images/sellmycarlisting/jaguar/9.jpg",
+                "images/sellmycarlisting/jaguar/10.jpg",
+                "images/sellmycarlisting/jaguar/11.jpg",
+                "images/sellmycarlisting/jaguar/12.jpg",
+                "images/sellmycarlisting/jaguar/13.jpg",
+                "images/sellmycarlisting/jaguar/14.jpg"
             ]
         }
    
@@ -394,4 +402,5 @@ renderCars(currentCars);
     });
 
 })();
+
 
