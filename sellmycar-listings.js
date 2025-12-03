@@ -190,7 +190,7 @@ const cars = [
             color: "Gray",
             bodyType: "Hatchback",
             airbags: 4,
-            mainImg: "images/sellmycarlisting/starlet/main.jpg",
+            mainImg: "images/sellmycarlisting/Jaguar/main.jpg",
             photosCount: 6,
             thumbs: [
                 "images/sellmycarlisting/Jaguar/1.jpg",
@@ -394,3 +394,4 @@ renderCars(currentCars);
     });
 
 })();
+
