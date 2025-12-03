@@ -1,0 +1,429 @@
+/* =========================================================
+   VEHICLE DETAILS PAGE – STYLE (FINAL VERSION)
+   ========================================================= */
+
+/* Global resets */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: "Inter", Arial, sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+
+/* Page wrapper */
+.vehicle-details-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+}
+
+/* Breadcrumb */
+.breadcrumbs {
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  color: #777;
+}
+.breadcrumbs a {
+  text-decoration: none;
+  color: #0052A3;
+}
+
+/* Back link */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #0052A3;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+
+/* =============================
+   TOP SECTION LAYOUT
+   ============================= */
+.vehicle-main-box {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 24px;
+}
+
+/* =============================
+   GALLERY AREA
+   ============================= */
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.main-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.main-image img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Prev / Next buttons */
+.image-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.55);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.25s;
+}
+.image-nav:hover {
+  background: rgba(0,0,0,0.8);
+}
+.image-nav.prev { left: 8px; }
+.image-nav.next { right: 8px; }
+
+/* Thumbnails */
+.thumb-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.thumb-btn {
+  border: 2px solid transparent;
+  border-radius: 6px;
+  padding: 0;
+  cursor: pointer;
+  transition: border 0.2s;
+  background: none;
+}
+.thumb-btn img {
+  width: 88px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.thumb-btn.active {
+  border-color: #ff6600;
+}
+
+/* =============================
+   INFO BOX (RIGHT SIDE)
+   ============================= */
+.vehicle-info-box h2 {
+  margin: 0;
+  font-size: 1.45rem;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+.price {
+  font-size: 1.5rem;
+  color: #d21f1f;
+  margin: 10px 0 16px;
+  font-weight: 700;
+}
+
+/* Tags under price */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.tags span {
+  background: #eef4ff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #0052A3;
+  font-weight: 500;
+}
+
+/* Specs section title */
+.vehicle-info-box h3 {
+  font-size: 1rem;
+  margin: 6px 0 12px;
+  font-weight: 600;
+}
+
+/* SPEC GRID LIKE CARSOKO */
+.spec-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.spec-grid div {
+  border: 1px solid #e3e3e3;
+  background: #fafafa;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+.spec-grid label {
+  font-size: 0.85rem;
+  color: #777;
+}
+.spec-grid span {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 3px;
+  display: block;
+}
+
+/* Buttons */
+.action-row {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-orange {
+  background: #ff6600;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.btn-outline {
+  border: 2px solid #0052A3;
+  color: #0052A3;
+  background: #fff;
+  padding: 8px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.btn-green {
+  background: #2e7d32;
+  border: none;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+/* =============================
+   LOWER SECTION
+   ============================= */
+.info-section {
+  margin-top: 22px;
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 22px;
+}
+
+.info-section .left-box,
+.info-section .right-box {
+  background: #fff;
+  border-radius: 10px;
+  padding: 18px;
+  border: 1px solid #ddd;
+}
+
+.info-section h3 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.info-section p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Feature list */
+.info-section ul {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 0.95rem;
+}
+.info-section li {
+  margin-bottom: 5px;
+}
+
+/* =============================
+   NOT FOUND DISPLAY
+   ============================= */
+.not-found {
+  padding: 40px 0;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+/* =============================
+   RESPONSIVE
+   ============================= */
+@media (max-width: 960px) {
+  .vehicle-main-box {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+
+  .main-image img {
+    height: 280px;
+  }
+
+  .info-section {
+    grid-template-columns: 1fr;
+  }
+
+  .thumb-btn img {
+    width: 75px;
+    height: 55px;
+  }
+}
+/* ================================
+   SIMILAR VEHICLES SECTION
+================================ */
+.similar-grid {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.similar-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  text-decoration: none;
+  color: #333;
+  transition: 0.25s;
+}
+
+.similar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.similar-imgbox img {
+  width: 100%;
+  height: 165px;
+  object-fit: cover;
+}
+
+.similar-info {
+  padding: 12px;
+}
+
+.similar-info h4 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.similar-price {
+  font-size: 1.1rem;
+  color: #d21f1f;
+  font-weight: 700;
+  margin: 4px 0 10px;
+}
+
+.similar-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.similar-tags span {
+  background: #eef4ff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: #0052A3;
+  font-weight: 500;
+}
+/* ================================
+   ACTION BUTTONS
+================================ */
+.action-buttons {
+  display: flex;
+  gap: 16px;
+  margin: 25px 0;
+}
+
+.btn-whatsapp {
+  background: #25d366;
+  padding: 14px 26px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-call {
+  background: #000;
+  padding: 14px 26px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* SHARE */
+.share-section {
+  margin-top: 25px;
+}
+
+.share-section h4 {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.share-icons {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.share-icons a {
+  font-size: 24px;
+  color: #333;
+  background: #f3f3f3;
+  padding: 10px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-decoration: none;
+}
+
+.share-icons a:hover {
+  background: #e1e1e1;
+}

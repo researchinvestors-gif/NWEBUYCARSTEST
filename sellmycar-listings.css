@@ -1,0 +1,481 @@
+:root {
+  --primary-blue: #0052A3;
+  --accent-green: #18A957;
+  --accent-amber: #FFB100;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #222;
+}
+
+/* HEADER (reuse style) */
+.main-header {
+  background: #fff;
+  border-bottom: 3px solid var(--primary-blue);
+}
+
+.header-inner {
+  width: 90%;
+  margin: 0 auto;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo img {
+  height: 55px;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 22px;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.nav-menu .active {
+  color: var(--primary-blue);
+}
+
+/* PAGE WRAPPER */
+.page-wrap {
+  width: 90%;
+  margin: 20px auto 40px;
+}
+
+/* FILTER BAR */
+.filter-bar {
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+
+.filter-left {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.category-select button {
+  border-radius: 6px;
+  border: 1px solid #d0d4e0;
+  background: #fff;
+  padding: 9px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.category-select i {
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  border: 1px solid #d0d4e0;
+  padding: 6px 10px;
+  width: 280px;
+}
+
+.search-box i {
+  color: #999;
+  margin-right: 8px;
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+}
+
+.filter-right {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-btn,
+.search-count-btn {
+  border-radius: 6px;
+  border: 1px solid #d0d4e0;
+  padding: 9px 14px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.filter-btn i {
+  font-size: 13px;
+}
+
+.search-count-btn {
+  background: var(--primary-blue);
+  border-color: var(--primary-blue);
+  color: #fff;
+}
+
+/* TITLE + SORT */
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 20px 0 12px;
+}
+
+.title-row h1 {
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+.result-text {
+  font-size: 14px;
+  color: #666;
+}
+
+.sort-wrap {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+}
+
+.sort-wrap select {
+  border-radius: 6px;
+  border: 1px solid #d0d4e0;
+  padding: 7px 10px;
+  font-size: 14px;
+}
+
+/* CONTENT WRAP */
+.content-wrap {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* LEFT: LISTINGS COLUMN */
+.listings-column {
+  flex: 1.6;
+}
+
+.listings {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* CARD (LIST VIEW) */
+.listing-card {
+  display: grid;
+  grid-template-columns: 38% 62%;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+/* MEDIA SIDE */
+.card-media {
+  position: relative;
+}
+
+.card-media img.main-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.photo-count {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(0,0,0,0.65);
+  color: #fff;
+  padding: 3px 7px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.heart-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* RIGHT DETAILS SIDE */
+.card-main {
+  padding: 14px 18px 14px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* PRICE ROW */
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+
+.price-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.price-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  padding: 3px 7px;
+  border-radius: 4px;
+}
+
+.badge-fair {
+  background: #2c8ef4;
+}
+.badge-great {
+  background: var(--accent-green);
+}
+.badge-good {
+  background: var(--accent-amber);
+}
+
+.price-note {
+  font-size: 11px;
+  color: #666;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* META ROW */
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 6px;
+  font-size: 13px;
+  color: #555;
+}
+
+.meta-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* TAGS (Used / Manual etc.) */
+.tag-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+
+.tag {
+  border-radius: 4px;
+  border: 1px solid #d0d4e0;
+  padding: 3px 6px;
+}
+
+/* DEALER INFO */
+.dealer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.dealer-name {
+  font-weight: 600;
+}
+
+.dealer-rating i {
+  color: #f3b600;
+}
+
+/* THUMB STRIP UNDER CARD */
+.thumb-strip {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.thumb-strip img {
+  width: 56px;
+  height: 42px;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+
+/* SELLING CTA */
+.selling-cta {
+  margin-top: 20px;
+  background: #e8f0ff;
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selling-text h3 {
+  margin-bottom: 4px;
+}
+
+.selling-text p {
+  font-size: 13px;
+  color: #555;
+}
+
+.selling-btn {
+  background: var(--primary-blue);
+  color: #fff;
+  padding: 9px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+/* SIDEBAR */
+.sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card.sidebar-box {
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px 14px 16px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+
+.sidebar-box h3 {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.sidebar-box p {
+  font-size: 13px;
+  color: #555;
+}
+
+.sidebar-btn {
+  margin-top: 8px;
+  background: var(--primary-blue);
+  color: #fff;
+  border-radius: 6px;
+  border: none;
+  font-size: 13px;
+  padding: 8px 13px;
+  cursor: pointer;
+}
+
+.review-list,
+.dealer-list {
+  list-style: none;
+  font-size: 13px;
+}
+
+.review-list li,
+.dealer-list li {
+  margin: 4px 0;
+}
+
+.review-list a,
+.dealer-list a {
+  text-decoration: none;
+  color: var(--primary-blue);
+}
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .content-wrap {
+    flex-direction: column;
+  }
+
+  .listing-card {
+    grid-template-columns: 100%;
+  }
+
+  .card-media img.main-img {
+    height: 220px;
+  }
+}
+
+@media (max-width: 720px) {
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .filter-left {
+    width: 100%;
+  }
+
+  .search-box {
+    flex: 1;
+  }
+
+  .filter-right {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .title-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}

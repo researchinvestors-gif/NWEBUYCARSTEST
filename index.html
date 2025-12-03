@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>N WE BUY CARS | Buy or Sell Any Car in Kenya</title>
+
+  <meta name="description" content="N WE BUY CARS — Buy or sell your car fast, safely, and hassle-free across Kenya." />
+  <link rel="icon" href="images/Favicon.jpg" type="image/jpeg" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- HEADER / NAV -->
+ <header class="main-header">
+  <div class="container topbar-inner">
+
+    <!-- Logo -->
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/logo.png" alt="N WE BUY CARS Logo" />
+      </a>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button class="hamburger" id="hamburger">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- Main navigation -->
+    <nav class="main-nav">
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="buyacar.html">BUY A CAR</a></li>
+        <li><a href="sellmycar-listings.html">USED LOCALLY</a></li>
+        <li><a href="directimport.html">DIRECT IMPORT</a></li>
+        <li><a href="offers.html">OFFERS</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="contact.html">CONTACT US</a></li>
+
+
+        <!-- Proper dropdown -->
+        <li class="dropdown">
+          <a href="#" id="dropdownBtn">
+            MORE <i class="fas fa-chevron-down"></i>
+          </a>
+          <ul class="dropdown-menu" id="dropdownMenu">
+            <li><a href="import-details.html">FINANCE</a></li>
+            <li><a href="directimport.html">TRADE-IN</a></li>
+            <li><a href="reviews.html">REVIEWS</a></li>
+
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Right-side sub logo -->
+    <div class="nav-right">
+      <img src="images/sub-logo.png" alt="N Logo" class="sub-logo">
+      <span class="brand-text">WE BUY CARS</span>
+    </div>
+  </div>
+</header>
+
+ <!-- HERO: local slideshow -->
+<section class="hero">
+  <div class="slideshow-container" id="slides">
+    <div class="slide active">
+      <img src="images/slide1.png" alt="SUV on sand" />
+      <div class="caption">
+        <h1>YOUR BEST-SELLING <span class="accent-orange">CAR SHOP!</span></h1>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="images/slide2.png" alt="Red SUV city night" />
+      <div class="caption">
+        <h1>BUY OR SELL <span class="accent-orange">ANY CAR</span> FAST!</h1>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="images/slide3.png" alt="Luxury SUV" />
+      <div class="caption">
+        <h1>EXCLUSIVE <span class="accent-orange">OFFERS</span> THIS MONTH!</h1>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="images/slide4.png" alt="Silver SUV on road" />
+      <div class="caption">
+        <h1>QUALITY <span class="accent-orange">PRE-OWNED</span> VEHICLES</h1>
+      </div>
+    </div>
+
+    <div class="slide">
+      <img src="images/slide5.png" alt="SUV showroom" />
+      <div class="caption">
+        <h1>FIND YOUR <span class="accent-orange">NEXT RIDE</span> TODAY!</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="dots" id="dots"></div>
+
+  <div class="hero-search">
+    <h3>VEHICLE SEARCH</h3>
+    <p>Search our stock of high-quality new & used vehicles</p>
+    <select>
+      <option>All Makes</option>
+      <option>Chery</option>
+      <option>GWM</option>
+      <option>Mazda</option>
+      <option>Suzuki</option>
+    </select>
+    <select>
+      <option>Model</option>
+    </select>
+    <button>SEARCH 721 VEHICLES</button>
+  </div>
+</section>
+
+  <!-- 🚗 SELL YOUR CAR (AutoTrader-style banner) -->
+<section class="sell-your-car">
+  <div class="sell-banner">
+    <div class="sell-content">
+      <h2>Sell your car</h2>
+      <p>Reach Kenya’s biggest and most serious audience of car buyers.</p>
+      <a href="#" class="btn-sell">Sell now</a>
+    </div>
+  </div>
+</section>
+
+  <!-- FEATURED VEHICLES -->
+  <section class="featured-vehicles">
+    <div class="container">
+      <h2>FEATURED VEHICLES</h2>
+      <div class="home-vehicle-grid">
+        <div class="vehicle-card">
+         <img src="images/featured1.png" alt="Ford Kuga" />
+          <h4>KES 1,499,950</h4><p>2015 Ford Kuga 1.6T AMBIENTE</p>
+        </div>
+        <div class="vehicle-card">
+          <img src="images/featured2.png" alt="Ford EcoSport" />
+          <h4>KES 2,699,000</h4><p>2021 Ford EcoSport Titanium Auto</p>
+        </div>
+        <div class="vehicle-card">
+          <img src="images/featured3.png" alt="Mercedes E-Class" />
+          <h4>KES 1,990,000</h4><p>2013 Mercedes-Benz E200 Avantgarde</p>
+        </div>
+        <div class="vehicle-card">
+          <img src="images/featured4.png" alt="Honda Fit" />
+          <h4>KES 3,589,000</h4><p>2025 Honda Fit 1.5 Elegance</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAR NEWS & ADVICE -->
+  <section class="car-news">
+  <div class="container">
+    <div class="news-header">
+      <h2>Car news & advice</h2>
+      <a href="news.html" class="more-link">More news & advice</a>
+    </div>
+
+    <div class="news-grid">
+      <!-- Left: Featured article -->
+      <article class="featured-article">
+        <div class="featured-image">
+          <img src="images/news-main.jpg" alt="Featured Car News">
+        </div>
+        <div class="featured-text">
+          <h3>Lexus Reinvents the LS</h3>
+          <p class="meta">06 November 2025 · Ole Henry</p>
+          <p class="excerpt">
+            Lexus has taken the LS, its long-standing flagship sedan, and reimagined it from the ground up. Instead of simply refining luxury,
+             Lexus is steering the LS into a bold new era defined by emotional design, innovative performance, and next-level technology.
+          </p>
+        </div>
+      </article>
+
+      <!-- Right: Side articles -->
+      <div class="side-articles">
+        <article class="news-card">
+          <img src="images/news1.png" alt="Chinese car brands in Kenya">
+          <div class="card-text">
+            <h4>Chinese car brands in Kenya: Are they worth buying?</h4>
+            <p>With value-packed pricing and a multitude of features, Chinese carmakers lure buyers...</p>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <img src="images/news2.png" alt="Changan Motors launches">
+          <div class="card-text">
+            <h4>Changan Motors officially launches in Kenya. 5 vehicles driven with impressions</h4>
+            <p>Changan Motors has re-entered the market with five distinct models...</p>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <img src="images/news3.png" alt="Isuzu D-Max review">
+          <div class="card-text">
+            <h4>New Isuzu D-Max X-Rider Black (2025) Roadtrip Review</h4>
+            <p>The X-Rider receives the full Dark Vader treatment with bold design updates...</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- CAR REVIEWS -->
+  <section class="car-reviews">
+  <div class="container">
+    <div class="news-header">
+      <h2>Car reviews</h2>
+      <a href="reviews.html" class="more-link">More reviews</a>
+    </div>
+
+    <div class="review-grid">
+      <a href="reviews.html" class="review-link">
+        <article class="review-card">
+          <img src="images/review1.png" alt="Ford Transit Custom Sport">
+          <p class="meta">31 October 2025 · Ole Henry</p>
+          <h3>Toyota Voxy (2025) Roadtrip Review</h3>
+          <p>One unplanned weekend flipped the script on what we thought a panel van could be...</p>
+        </article>
+      </a>
+
+      <a href="reviews.html" class="review-link">
+        <article class="review-card">
+          <img src="images/review2.png" alt="Mazda CX-30">
+          <p class="meta">21 October 2025 · Toimasi</p>
+          <h3>Mazda CX-5 (2025) Review</h3>
+          <p>There’s often a type of car that is more than its spec sheet describes...</p>
+        </article>
+      </a>
+
+      <a href="reviews.html" class="review-link">
+        <article class="review-card">
+          <img src="images/review3.png" alt="MG Cyberster">
+          <p class="meta">19 September 2025 · Karori</p>
+          <h3>Halo or Hollow? Can the MG Cyberster reignite the roadster?</h3>
+          <p>The MG Cyberster promises speed, style, and theatre in an all-electric package...</p>
+        </article>
+      </a>
+
+      <a href="reviews.html" class="review-link">
+        <article class="review-card">
+          <img src="images/review4.png" alt="Isuzu mu-X">
+          <p class="meta">03 October 2025 · Ole Henry</p>
+          <h3>Isuzu mu-X 3.0TD LSE 4WD (2025) – Video Review</h3>
+          <p>A workhorse in a suit? Still a family adventurer...</p>
+        </article>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-content">
+      <div class="footer-column">
+        <h3>CONTACT INFORMATION</h3>
+        <ul class="footer-links">
+          <li><a href="tel:+254707895253"><i class="fas fa-phone"></i> +254 707 895 253</a></li>
+          <li><a href="mailto:info@nwebuycars.com"><i class="fas fa-envelope"></i> info@nwebuycars.com</a></li>
+          <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>QUICK LINKS</h3>
+        <ul class="footer-links">
+          <li><a href="#">HOME</a></li>
+          <li><a href="#">SELL MY CAR</a></li>
+          <li><a href="#">ABOUT</a></li>
+          <li><a href="#">CONTACT US</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>FOLLOW US</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright"><p>© 2025 NWEBUYCARS.COM | All rights reserved.</p></div>
+  </footer>
+
+  <!-- JS: dropdown + slideshow -->
+  <script>
+    // Dropdown
+    const dropdown = document.querySelector(".dropdown");
+    const dropdownBtn = document.getElementById("dropdownBtn");
+    const dropdownMenu = document.getElementById("dropdownMenu");
+
+    dropdownBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      dropdown.classList.toggle("open");
+      dropdownMenu.classList.toggle("show");
+    });
+    document.addEventListener("click", (e) => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove("open");
+        dropdownMenu.classList.remove("show");
+      }
+    });
+      // NEW: Mobile hamburger toggle
+  const hamburger = document.getElementById("hamburger");
+  const navMenu   = document.getElementById("navMenu");
+
+  if (hamburger && navMenu) {
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("show");
+    });
+  }
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        dropdown.classList.remove("open");
+        dropdownMenu.classList.remove("show");
+      }
+    });
+
+    // Slideshow
+    const slides = document.querySelectorAll(".slide");
+    const dotsWrap = document.getElementById("dots");
+    let i = 0;
+
+    // build dots
+    slides.forEach((_, idx) => {
+      const d = document.createElement("span");
+      d.className = "dot" + (idx === 0 ? " active" : "");
+      d.addEventListener("click", () => goTo(idx));
+      dotsWrap.appendChild(d);
+    });
+    const dots = document.querySelectorAll(".dot");
+
+    function show(idx){
+      slides.forEach(s => s.classList.remove("active"));
+      dots.forEach(d => d.classList.remove("active"));
+      slides[idx].classList.add("active");
+      dots[idx].classList.add("active");
+    }
+    function next(){ i = (i+1) % slides.length; show(i); }
+    function goTo(idx){ i = idx; show(i); resetTimer(); }
+
+    let timer = setInterval(next, 4000);
+    function resetTimer(){ clearInterval(timer); timer = setInterval(next, 4000); }
+
+    show(0);
+  </script>
+  
+</body>
+</html>

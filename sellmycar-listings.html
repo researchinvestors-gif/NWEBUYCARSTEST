@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sell My Car Listings | N We Buy Cars</title>
+  <link rel="icon" href="images/Favicon.jpg" type="image/jpeg" />
+
+  <link rel="stylesheet" href="sellmycar-listings.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="main-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="N We Buy Cars">
+    </a>
+
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="buyacar.html">BUY A CAR</a></li>
+        <li><a class="active" href="sellmycar-listings.html">USED LOCALLY</a></li>
+        <li><a href="directimport.html">DIRECT IMPORT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="page-wrap">
+
+  <!-- TOP FILTER BAR -->
+  <section class="filter-bar">
+    <div class="filter-left">
+      <div class="category-select">
+        <button>
+          Cars <i class="fa-solid fa-chevron-down"></i>
+        </button>
+      </div>
+
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input id="searchInput" type="text" placeholder="Enter Make, Model and Variant">
+      </div>
+    </div>
+
+    <div class="filter-right">
+      <button class="filter-btn">
+        <i class="fa-solid fa-sliders"></i> Filters
+      </button>
+      <button id="searchBtn" class="search-count-btn">
+        Search <span id="searchCount">0</span> cars
+      </button>
+    </div>
+  </section>
+
+  <!-- TITLE + SORT -->
+  <section class="title-row">
+    <div>
+      <h1>New & Used Cars For Sale</h1>
+      <p class="result-text"><span id="resultsCount">0</span> results</p>
+    </div>
+    <div class="sort-wrap">
+      <label for="sortSelect">Sort:</label>
+      <select id="sortSelect">
+        <option value="default">Default</option>
+        <option value="priceAsc">Price – Low to High</option>
+        <option value="priceDesc">Price – High to Low</option>
+        <option value="yearDesc">Year – Newest First</option>
+        <option value="mileageAsc">Mileage – Low to High</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- CONTENT: LIST + SIDEBAR -->
+  <section class="content-wrap">
+
+    <!-- MAIN LISTINGS -->
+    <div class="listings-column">
+      <div id="listingsContainer" class="listings"></div>
+
+      <!-- SELLING CTA -->
+      <div class="selling-cta">
+        <div class="selling-text">
+          <h3>Selling your car?</h3>
+          <p>Get a free, no-obligation car valuation in seconds.</p>
+        </div>
+        <a href="sellmycar.html" class="selling-btn">Get started</a>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="card sidebar-box">
+        <h3>Create an alert</h3>
+        <p>Be the first to see new & used cars matching your search.</p>
+        <button class="sidebar-btn">Set up alert</button>
+      </div>
+
+      <div class="card sidebar-box">
+        <h3>Related car reviews</h3>
+        <ul class="review-list">
+          <li><a href="#">BMW iX xDrive60 M Sport – Review</a></li>
+          <li><a href="#">Changan CS75 Pro – Quick Review</a></li>
+          <li><a href="#">DongFeng Box – Video Review</a></li>
+          <li><a href="#">Audi A5 Sedan TFSI S line – Review</a></li>
+        </ul>
+      </div>
+
+      <div class="card sidebar-box">
+        <h3>Car Dealers</h3>
+        <ul class="dealer-list">
+          <li><a href="#">N We Buy Cars – Nairobi</a></li>
+          <li><a href="#">N We Buy Cars – Mombasa</a></li>
+          <li><a href="#">N We Buy Cars – Kisumu</a></li>
+        </ul>
+      </div>
+
+    </aside>
+
+  </section>
+
+</main>
+
+<script src="sellmycar-listings.js"></script>
+</body>
+</html>

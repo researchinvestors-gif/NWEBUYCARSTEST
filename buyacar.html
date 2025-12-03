@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Buy A Car | N We Buy Cars</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Global + page CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="buyacar.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="N We Buy Cars">
+        <link rel="icon" type="image/x-icon" href="images/favicon.jpg">
+      </a>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li class="active"><a href="buyacar.html">Buy A Car</a></li>
+          <li><a href="sellmycar-listings.html">LOCALLY USED</a></li>
+          <li><a href="directimport.html">Direct Import</a></li>
+          <li><a href="offers.html">Offers</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contactus.html">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <!-- STOCK FILTERS -->
+    <section class="stock-bar">
+      <div class="container row-between">
+        <div class="pill-row">
+          <button class="pill active" data-stock="all">All</button>
+          <button class="pill" data-stock="kenya">Available in Kenya</button>
+          <button class="pill" data-stock="import">Direct Import</button>
+          <button class="pill pill-primary" id="openDrawer">
+            <i class="fa-solid fa-filter"></i> Filter My Search
+          </button>
+        </div>
+
+        <div class="sort-meta">
+          <span id="showingText">Showing 0 – 0 of 0</span>
+          <label>
+            Sort
+            <select id="sortSelect">
+              <option value="newest">Newest</option>
+              <option value="pricelow">Price: Low to High</option>
+              <option value="pricehigh">Price: High to Low</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORY TILES -->
+    <section class="category-strip">
+      <div class="container cat-row">
+        <button class="cat-tile active" data-category="all">Vehicles</button>
+        <button class="cat-tile" data-category="luxury">Luxury</button>
+        <button class="cat-tile" data-category="suv">SUV</button>
+        <button class="cat-tile" data-category="bakkie">Bakkie</button>
+        <button class="cat-tile" data-category="4x4">4X4</button>
+        <button class="cat-tile" data-category="commercial">Commercial</button>
+      </div>
+    </section>
+
+    <!-- SEARCH STRIP -->
+    <section class="search-strip">
+      <div class="container search-row">
+        <div class="search-field">
+          <label for="makeSelect">Make</label>
+          <select id="makeSelect">
+            <option value="">All Makes</option>
+          </select>
+        </div>
+
+        <div class="search-field">
+          <label for="modelSelect">Model</label>
+          <select id="modelSelect">
+            <option value="">Any Model</option>
+          </select>
+        </div>
+
+        <div class="search-field">
+          <label for="priceSelect">Price Range</label>
+          <select id="priceSelect">
+            <option value="">Any Price</option>
+            <option value="0-1500000">Up to 1.5M</option>
+            <option value="1500000-3000000">1.5M – 3M</option>
+            <option value="3000000-5000000">3M – 5M</option>
+            <option value="5000000-8000000">5M – 8M</option>
+            <option value="8000000-15000000">8M – 15M</option>
+          </select>
+        </div>
+
+        <button id="searchBtn" class="btn-search">
+          <i class="fa-solid fa-magnifying-glass"></i> Search
+        </button>
+      </div>
+    </section>
+
+    <!-- RESULTS GRID -->
+    <section class="results-section">
+      <div class="container">
+        <div id="vehicleList" class="vehicle-grid"></div>
+
+        <p id="noResults" class="no-results" hidden>
+          No results found. Try different filters.
+        </p>
+
+        <div id="pagination" class="pagination"></div>
+      </div>
+    </section>
+
+    <!-- FILTER DRAWER -->
+    <div id="drawerOverlay" class="drawer-overlay"></div>
+
+    <aside id="filterDrawer" class="filter-drawer">
+      <div class="drawer-header">
+        <h3>More Filters</h3>
+        <button id="closeDrawer" class="drawer-close">&times;</button>
+      </div>
+
+      <div class="drawer-section">
+        <h4>Fuel Type</h4>
+        <label><input type="checkbox" class="fuelChk" value="petrol"> Petrol</label>
+        <label><input type="checkbox" class="fuelChk" value="diesel"> Diesel</label>
+      </div>
+
+      <div class="drawer-section">
+        <h4>Transmission</h4>
+        <label><input type="checkbox" class="transChk" value="automatic"> Automatic</label>
+        <label><input type="checkbox" class="transChk" value="manual"> Manual</label>
+      </div>
+
+      <div class="drawer-section">
+        <h4>Seller</h4>
+        <label><input type="checkbox" class="sellerChk" value="private seller"> Private Seller</label>
+        <label><input type="checkbox" class="sellerChk" value="n we buy cars"> N We Buy Cars</label>
+      </div>
+
+      <button id="applyFilters" class="drawer-apply">Apply Filters</button>
+    </aside>
+
+  </main>
+
+  <!-- Simple footer -->
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p>© 2025 N We Buy Cars. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" defer></script>
+  <script src="cars.js"></script>
+  <script src="buyacar-logic.js"></script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+/* buyacar.css */
+
+:root {
+  --primary-blue: #0052A3;
+  --primary-orange: #FF6600;
+  --light-grey: #f5f5f5;
+  --border-grey: #dcdcdc;
+}
+
+/* basic reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+  background: #fff;
+}
+
+/* container */
+.container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* HEADER */
+.main-header {
+  border-bottom: 4px solid var(--primary-blue);
+  background: #fff;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+}
+.logo img {
+  height: 40px;
+}
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+.main-nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+}
+.main-nav li.active a {
+  color: var(--primary-blue);
+  font-weight: bold;
+}
+
+/* PAGE */
+.page {
+  padding-bottom: 40px;
+}
+
+/* STOCK BAR */
+.stock-bar {
+  border-bottom: 1px solid var(--border-grey);
+  background: #fff;
+}
+.row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+.pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pill {
+  border-radius: 999px;
+  border: 1px solid var(--primary-blue);
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  background: #fff;
+  color: var(--primary-blue);
+  cursor: pointer;
+}
+.pill.active {
+  background: var(--primary-orange);
+  border-color: var(--primary-orange);
+  color: #fff;
+}
+.pill-primary {
+  background: var(--primary-blue);
+  border-color: var(--primary-blue);
+  color: #fff;
+}
+
+.sort-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.85rem;
+}
+.sort-meta select {
+  padding: 4px 8px;
+}
+
+/* CATEGORY STRIP */
+.category-strip {
+  background: var(--primary-blue);
+}
+.cat-row {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+  padding: 6px 0;
+}
+.cat-tile {
+  border-radius: 6px;
+  border: 1px solid #00417f;
+  background: #005bbb;
+  color: #fff;
+  font-size: 0.85rem;
+  padding: 8px;
+  cursor: pointer;
+}
+.cat-tile.active {
+  background: #003d73;
+}
+
+/* SEARCH STRIP */
+.search-strip {
+  background: #fff;
+  border-bottom: 1px solid var(--border-grey);
+}
+.search-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  padding: 12px 0;
+}
+.search-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+  flex: 1 1 0;
+}
+.search-field label {
+  font-size: 0.8rem;
+  margin-bottom: 4px;
+}
+.search-field select {
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-grey);
+}
+.btn-search {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: none;
+  background: var(--primary-orange);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* RESULTS */
+.results-section {
+  padding: 16px 0 32px;
+  background: var(--light-grey);
+}
+.vehicle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* CARD */
+.vehicle-card {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid var(--border-grey);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.vehicle-image img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.vehicle-body {
+  padding: 10px 12px 12px;
+}
+.vehicle-title {
+  font-size: 0.98rem;
+  margin-bottom: 6px;
+}
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  font-size: 0.75rem;
+  margin-bottom: 6px;
+}
+.chip {
+  border-radius: 999px;
+  background: #eef4ff;
+  padding: 3px 8px;
+}
+.chip i {
+  margin-right: 4px;
+}
+.line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.badge {
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: #fff;
+}
+.badge.petrol {
+  background: #2ecc71;
+}
+.badge.diesel {
+  background: #e67e22;
+}
+.seller {
+  font-size: 0.8rem;
+  color: #666;
+}
+.car-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* NO RESULTS + PAGINATION */
+.no-results {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #777;
+  margin: 24px 0 8px;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+.page-btn {
+  border-radius: 4px;
+  border: 1px solid var(--border-grey);
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  background: #fff;
+  cursor: pointer;
+}
+.page-btn.active {
+  background: var(--primary-blue);
+  color: #fff;
+}
+
+/* DRAWER */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  display: none;
+  z-index: 900;
+}
+.drawer-overlay.show {
+  display: block;
+}
+.filter-drawer {
+  position: fixed;
+  right: -320px;
+  top: 0;
+  bottom: 0;
+  width: 320px;
+  background: #fff;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+  z-index: 901;
+  transition: right 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+.filter-drawer.open {
+  right: 0;
+}
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-grey);
+}
+.drawer-header h3 {
+  font-size: 1rem;
+}
+.drawer-close {
+  border: none;
+  background: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+.drawer-section {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-grey);
+  font-size: 0.9rem;
+}
+.drawer-section h4 {
+  margin-bottom: 6px;
+}
+.drawer-section label {
+  display: block;
+  margin-bottom: 4px;
+}
+.drawer-apply {
+  margin: 16px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  background: var(--primary-blue);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* FOOTER */
+.site-footer {
+  border-top: 1px solid var(--border-grey);
+  padding: 10px 0;
+  background: #fff;
+  font-size: 0.8rem;
+}
+.footer-row {
+  text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .row-between {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .sort-meta {
+    align-self: flex-end;
+  }
+  .cat-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .search-row {
+    align-items: stretch;
+  }
+}

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Direct Import Vehicle | N We Buy Cars</title>
+  <link rel="icon" href="images/Favicon.jpg" type="image/jpeg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="direct-import.css">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+
+<header class="main-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="N We Buy Cars">
+    </a>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="buyacar.html">BUY A CAR</a></li>
+        <li><a href="#">USED LOCALLY</a></li>
+        <li class="active"><a href="directimport.html">DIRECT IMPORT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="di-details-page">
+
+  <nav class="breadcrumbs">
+    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+    <span><i class="fa-solid fa-angle-right"></i></span>
+    <a href="directimport.html">Direct Import</a>
+    <span><i class="fa-solid fa-angle-right"></i></span>
+    <span id="crumbTitle">Vehicle</span>
+  </nav>
+
+  <a href="directimport.html" class="back-link">
+    <i class="fa-solid fa-arrow-left"></i> Back to International Stock
+  </a>
+
+  <section id="detailRoot"></section>
+
+</main>
+
+<!-- Estimate Modal -->
+<div id="estimateModal" class="estimate-modal">
+  <div class="estimate-content">
+    <span class="close-modal" id="closeEstimate">&times;</span>
+
+    <h2>Get an estimate</h2>
+
+    <div class="estimate-car-box">
+      <img id="est-img" src="" alt="">
+      <div>
+        <h4 id="est-title"></h4>
+        <p id="est-price"></p>
+        <p id="est-stock"></p>
+      </div>
+    </div>
+
+    <form id="estimateForm">
+      <div class="form-row">
+        <input type="text" id="estName" placeholder="Your Name" required>
+      </div>
+      <div class="form-row">
+        <input type="email" id="estEmail" placeholder="Email" required>
+      </div>
+      <div class="form-row">
+        <input type="tel" id="estPhone" placeholder="Phone Number" required>
+      </div>
+      <div class="form-row">
+        <textarea id="estMessage" placeholder="Message (Optional)"></textarea>
+      </div>
+      <button type="submit" class="submit-est">Submit</button>
+      <p class="estimate-note">Your request will be processed and saved for follow up from our team.</p>
+    </form>
+
+    <div id="estimateSuccess" class="estimate-success" style="display:none;">
+      Thank you! Your estimate request has been received.
+    </div>
+    <div id="estimateError" class="estimate-error" style="display:none;">
+      Something went wrong. Please try again.
+    </div>
+  </div>
+</div>
+
+<script src="imports.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const carId = params.get("id");
+  const car = getImportCarById(carId);
+
+  const root = document.getElementById("detailRoot");
+  const crumbTitle = document.getElementById("crumbTitle");
+
+  if (!car) {
+    root.innerHTML = '<p class="not-found">Vehicle not found. <a href="directimport.html">Back to list</a></p>';
+  } else {
+    crumbTitle.textContent = car.title;
+
+    const images = car.images && car.images.length ? car.images : ["images/default-car.jpg"];
+
+    root.innerHTML = `
+      <section class="di-details-top">
+
+        <!-- LEFT: GALLERY -->
+        <div class="di-gallery">
+          <div class="di-gallery-main">
+            <button class="di-gal-nav prev"><i class="fa-solid fa-chevron-left"></i></button>
+            <img src="${images[0]}" data-index="0" alt="${car.title}">
+            <button class="di-gal-nav next"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+
+          <div class="di-thumbs">
+            ${images.map((img, i) => `
+              <button class="di-thumb-btn" data-index="${i}">
+                <img src="${img}" alt="thumb ${i+1}">
+              </button>
+            `).join("")}
+          </div>
+        </div>
+
+        <!-- RIGHT: MAIN INFO -->
+        <aside class="di-main-info">
+          <p class="di-stock-line">Stock ID: <strong>${car.stockId || "-"}</strong></p>
+          <p class="di-location">${car.location || ""}</p>
+
+          <h1>${car.title}</h1>
+
+          <div class="di-title-tags">
+            <span>${car.model || ""}</span>
+            <span>${car.bodyType || ""}</span>
+            <span>Year: ${car.year || "-"} / ${car.month || ""}</span>
+          </div>
+
+          <div class="di-big-price">
+            <div class="label">Total Price</div>
+            <div class="value">USD ${(car.totalUSD || car.priceUSD).toLocaleString()}</div>
+          </div>
+
+          <div class="di-price-small">
+            <span>Vehicle Price</span>
+            <strong>USD ${car.priceUSD.toLocaleString()}</strong>
+          </div>
+
+          <div class="di-spec-icons">
+            <span><i class="fa-solid fa-road"></i> ${car.mileageKm ? car.mileageKm.toLocaleString() + " km" : "-"}</span>
+            <span><i class="fa-solid fa-oil-can"></i> ${car.engineCC ? car.engineCC.toLocaleString() + " cc" : "-"}</span>
+            <span><i class="fa-solid fa-gear"></i> ${car.transmission || "-"}</span>
+            <span><i class="fa-solid fa-road-circle-exclamation"></i> ${car.drive || "-"}</span>
+            <span><i class="fa-solid fa-gas-pump"></i> ${car.fuel || "-"}</span>
+            <span><i class="fa-solid fa-chair"></i> ${car.seats ? car.seats + " seats" : "-"}</span>
+            <span><i class="fa-solid fa-palette"></i> ${car.bodyColor || "-"}</span>
+          </div>
+
+          <button class="btn-red di-main-cta" id="openEstimateBtn">Get an estimate</button>
+        </aside>
+      </section>
+
+      <!-- LOWER TABLES -->
+      <section class="di-details-lower">
+        <div class="di-table-block">
+          <h2>Vehicle Details</h2>
+          <table class="di-table">
+            <tbody>
+              <tr><th>Make</th><td>${car.make || "-"}</td></tr>
+              <tr><th>Model</th><td>${car.model || "-"}</td></tr>
+              <tr><th>Body Color</th><td>${car.bodyColor || "-"}</td></tr>
+              <tr><th>Body Type</th><td>${car.bodyType || "-"}</td></tr>
+              <tr><th>Doors</th><td>${car.doors || "-"}</td></tr>
+              <tr><th>Seats</th><td>${car.seats || "-"}</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="di-table-block">
+          <h2>Specifications</h2>
+          <table class="di-table">
+            <tbody>
+              <tr><th>Mileage</th><td>${car.mileageKm ? car.mileageKm.toLocaleString() + " km" : "-"}</td></tr>
+              <tr><th>Engine</th><td>${car.engineCC ? car.engineCC.toLocaleString() + " cc" : "-"}</td></tr>
+              <tr><th>Drive</th><td>${car.drive || "-"}</td></tr>
+              <tr><th>Fuel</th><td>${car.fuel || "-"}</td></tr>
+              <tr><th>Transmission</th><td>${car.transmission || "-"}</td></tr>
+              <tr><th>Steering</th><td>${car.steering || "-"}</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- CAR OPTIONS (Modern, active/inactive) -->
+      <section class="car-options-section">
+        <h2>Car Options</h2>
+
+        <div class="car-option-group">
+          <h3>Comfort & Convenience</h3>
+          <div class="options-grid" id="comfortOptions"></div>
+        </div>
+
+        <div class="car-option-group">
+          <h3>Dress Up</h3>
+          <div class="options-grid" id="dressUpOptions"></div>
+        </div>
+
+        <div class="car-option-group">
+          <h3>Exterior</h3>
+          <div class="options-grid" id="exteriorOptions"></div>
+        </div>
+
+        <div class="car-option-group">
+          <h3>Safety</h3>
+          <div class="options-grid" id="safetyOptions"></div>
+        </div>
+
+        <div class="car-option-group">
+          <h3>Other</h3>
+          <div class="options-grid" id="otherOptions"></div>
+        </div>
+      </section>
+
+      <!-- Remarks -->
+      <section class="di-desc-section">
+        <h2>Remarks</h2>
+        <p>${car.description || "No additional remarks."}</p>
+      </section>
+    `;
+
+    // --------- GALLERY LOGIC ----------
+    const mainImg = root.querySelector(".di-gallery-main img");
+    const thumbBtns = Array.from(root.querySelectorAll(".di-thumb-btn"));
+    const prevBtn = root.querySelector(".di-gal-nav.prev");
+    const nextBtn = root.querySelector(".di-gal-nav.next");
+    let imgIndex = 0;
+
+    function showImage(newIdx) {
+      if (!images.length) return;
+      if (newIdx < 0) newIdx = images.length - 1;
+      if (newIdx >= images.length) newIdx = 0;
+      imgIndex = newIdx;
+      mainImg.src = images[newIdx];
+      thumbBtns.forEach((b, i) => b.classList.toggle("active", i === newIdx));
+    }
+
+    thumbBtns.forEach(b => {
+      b.addEventListener("click", () => showImage(parseInt(b.dataset.index, 10)));
+    });
+    prevBtn.addEventListener("click", () => showImage(imgIndex - 1));
+    nextBtn.addEventListener("click", () => showImage(imgIndex + 1));
+    showImage(0);
+
+    // --------- CAR OPTIONS (MODERN ACTIVE/INACTIVE) ----------
+    const masterOptions = {
+      comfort: [
+        "Air Conditioner",
+        "Navigation System",
+        "Power Steering",
+        "Power Window All",
+        "Cruise Control",
+        "Double Air Conditioner",
+        "Cooler",
+        "Paddle Shift",
+        "Audio Player",
+        "Both Power Slide Door",
+        "Left Side Power Slide Door"
+      ],
+      dressUp: [
+        "Aero Front",
+        "Aero Rear",
+        "Aero Side",
+        "Alloy Wheels",
+        "Grill Guard",
+        "Wood Combination Steering",
+        "Rear Spoiler"
+      ],
+      exterior: [
+        "Sun Roof",
+        "Roof Rack",
+        "Roof Rails",
+        "Glass Roof",
+        "Fog Light",
+        "LED Light",
+        "High Roof",
+        "Slide Glass"
+      ],
+      safety: [
+        "ABS",
+        "Air Bag",
+        "Around View Monitor",
+        "Back Camera",
+        "Side Camera",
+        "Corner Sensor",
+        "ESC",
+        "Front Camera"
+      ],
+      other: [
+        "Leather Seat",
+        "Back Tire",
+        "Auto Door",
+        "Sloper",
+        "Same Tire",
+        "Side Lift Up Seat",
+        "Just Low"
+      ]
+    };
+
+    function renderOptions(containerId, optionList, carFeaturesArray) {
+      const container = document.getElementById(containerId);
+      const carFeatures = carFeaturesArray || [];
+
+      container.innerHTML = optionList
+        .map(option => {
+          const isActive = carFeatures
+            .some(o => o.toLowerCase() === option.toLowerCase());
+          return `
+            <div class="option-pill ${isActive ? "active" : "inactive"}">
+              ${option}
+            </div>
+          `;
+        })
+        .join("");
+    }
+
+    renderOptions("comfortOptions", masterOptions.comfort, car.optionsComfort);
+    renderOptions("dressUpOptions", masterOptions.dressUp, car.optionsDressUp);
+    renderOptions("exteriorOptions", masterOptions.exterior, car.optionsExterior);
+    renderOptions("safetyOptions", masterOptions.safety, car.optionsSafety);
+    renderOptions("otherOptions", masterOptions.other, car.optionsOther);
+
+    // --------- GET ESTIMATE MODAL + SAVE TO BACKEND ----------
+    const estimateModal = document.getElementById("estimateModal");
+    const openEstimateBtn = document.getElementById("openEstimateBtn");
+    const closeEstimateBtn = document.getElementById("closeEstimate");
+    const estImg = document.getElementById("est-img");
+    const estTitle = document.getElementById("est-title");
+    const estPrice = document.getElementById("est-price");
+    const estStock = document.getElementById("est-stock");
+
+    const estimateForm = document.getElementById("estimateForm");
+    const estName = document.getElementById("estName");
+    const estEmail = document.getElementById("estEmail");
+    const estPhone = document.getElementById("estPhone");
+    const estMessage = document.getElementById("estMessage");
+
+    const estSuccess = document.getElementById("estimateSuccess");
+    const estError = document.getElementById("estimateError");
+
+    openEstimateBtn.addEventListener("click", () => {
+      estImg.src = images[0];
+      estTitle.textContent = car.title;
+      estPrice.textContent = "USD " + (car.totalUSD || car.priceUSD).toLocaleString();
+      estStock.textContent = "Stock ID: " + (car.stockId || "-");
+
+      estSuccess.style.display = "none";
+      estError.style.display = "none";
+
+      estimateModal.style.display = "flex";
+    });
+
+    closeEstimateBtn.addEventListener("click", () => {
+      estimateModal.style.display = "none";
+    });
+
+    window.addEventListener("click", (e) => {
+      if (e.target === estimateModal) {
+        estimateModal.style.display = "none";
+      }
+    });
+
+    // SUBMIT TO BACKEND (MongoDB via your API)
+    estimateForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      estSuccess.style.display = "none";
+      estError.style.display = "none";
+
+      const payload = {
+        vehicleId: car.id,
+        stockId: car.stockId,
+        title: car.title,
+        pageUrl: window.location.href,
+        name: estName.value.trim(),
+        email: estEmail.value.trim(),
+        phone: estPhone.value.trim(),
+        message: estMessage.value.trim()
+      };
+
+      try {
+        const res = await fetch("/api/import-estimates", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) {
+          throw new Error("Request failed");
+        }
+
+        estSuccess.style.display = "block";
+        estimateForm.reset();
+      } catch (err) {
+        console.error(err);
+        estError.style.display = "block";
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,955 @@
+/* ===========================
+   RESET
+=========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5f7fb;
+    color: #111;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+.main-header {
+    background: #fff;
+    border-bottom: 3px solid #0052A3;
+}
+
+.header-inner {
+    width: 90%;
+    margin: auto;
+    padding: 12px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-inner img {
+    height: 70px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #0052A3;
+    font-weight: bold;
+}
+
+.nav-menu li a:hover,
+.nav-menu li a.active {
+    color: #FF6600;
+}
+
+/* ===========================
+   PAGE BASE
+=========================== */
+.details-page {
+    width: 90%;
+    margin: auto;
+    padding: 20px 0 60px;
+}
+
+.top-row {
+    margin-bottom: 10px;
+}
+
+.back-link {
+    font-size: 14px;
+    color: #0052A3;
+    text-decoration: none;
+}
+
+.back-link i {
+    margin-right: 4px;
+}
+
+/* ===========================
+   TITLE
+=========================== */
+.page-header {
+    margin-bottom: 15px;
+}
+
+.page-header h1 {
+    font-size: 30px;
+    margin-bottom: 4px;
+}
+
+.car-subtitle {
+    font-size: 14px;
+    color: #555;
+}
+
+/* ===========================
+   TOP HIGHLIGHT BARS
+=========================== */
+.top-highlight-bars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 15px 0 25px;
+}
+
+.highlight-box {
+    border: 1px solid #e3e3e3;
+    padding: 12px 15px;
+    border-radius: 6px;
+    background: #f9fbff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.highlight-box h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.highlight-box p {
+    font-size: 20px;
+    color: #0052A3;
+    font-weight: 700;
+    margin: 0;
+}
+
+.highlight-box small {
+    color: #555;
+    font-size: 11px;
+}
+
+/* ===========================
+   HERO SECTION
+=========================== */
+.hero-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.hero-gallery {
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 12px;
+}
+
+.hero-main-wrapper {
+    position: relative;
+}
+
+.hero-main-img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.hero-photo-count {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.hero-photo-count i {
+    font-size: 13px;
+}
+
+.hero-thumbs-grid {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.hero-thumbs-grid img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.hero-thumbs-grid img:hover {
+    border-color: #0052A3;
+}
+
+/* HERO RIGHT CARD */
+.hero-contact-card {
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 18px;
+}
+
+.hero-price-label-row {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.hero-price-title {
+    font-weight: 600;
+    margin-right: 20px;
+}
+
+.hero-finance-tab {
+    font-size: 14px;
+    color: #777;
+}
+
+.hero-price-main {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.hero-price {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.hero-price-badge {
+    font-size: 11px;
+    padding: 3px 7px;
+    border-radius: 999px;
+    background: #e6f5e8;
+    color: #0a7a2b;
+    font-weight: 600;
+}
+
+.hero-price-note {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 14px;
+}
+
+.hero-btn {
+    width: 100%;
+    padding: 11px;
+    margin-bottom: 8px;
+}
+
+/* BUTTON STYLES */
+.btn-primary {
+    background: #0052A3;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background: #fff;
+    color: #0052A3;
+    border: 1px solid #0052A3;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-wa {
+    background: #25D366;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* ===========================
+   QUICK SPECS
+=========================== */
+.quick-specs {
+    display: flex;
+    gap: 25px;
+    padding: 10px 0 14px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.quick-specs span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #333;
+}
+
+.quick-specs i {
+    color: #0052A3;
+}
+
+/* ===========================
+   VEHICLE HIGHLIGHTS PILLS
+=========================== */
+.vehicle-highlights-section {
+    margin-bottom: 20px;
+}
+
+.vehicle-highlights-section h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.vehicle-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.highlight-pill {
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #eef3ff;
+    font-size: 13px;
+}
+
+/* ===========================
+   OVERVIEW + PRICE BOX
+=========================== */
+.overview-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.overview-box {
+    background: #fff;
+    padding: 18px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.overview-box h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.overview-grid {
+    margin-top: 6px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.overview-grid i {
+    margin-right: 6px;
+    color: #555;
+}
+
+.btn-outline-specs {
+    margin-top: 14px;
+    background: #fff;
+    color: #0052A3;
+    border: 1px solid #0052A3;
+    padding: 9px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* PRICE BOX */
+.price-box {
+    background: #fff;
+    padding: 18px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.price-tabs {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.price-tab {
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    margin-right: 8px;
+    color: #555;
+    cursor: pointer;
+}
+
+.price-tab-active {
+    background: #0052A3;
+    color: #fff;
+}
+
+.price-value {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+/* PRICE RATING BAR */
+#priceRatingWrapper {
+    margin: 5px 0 10px;
+}
+
+.price-badge {
+    padding: 3px 8px;
+    font-size: 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-right: 8px;
+    background: #27ae60;
+    color: #fff;
+}
+
+.price-comparison {
+    font-size: 13px;
+    color: #444;
+    font-weight: 500;
+}
+
+.price-bar {
+    width: 100%;
+    height: 6px;
+    background: #e8e8e8;
+    border-radius: 3px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+#priceFill {
+    height: 6px;
+    width: 0%;
+    background: #27ae60;
+    transition: width 0.7s ease;
+}
+
+.price-note {
+    font-size: 12px;
+    color: #777;
+    margin: 10px 0 12px;
+}
+
+.full-width {
+    width: 100%;
+    margin-bottom: 6px;
+}
+
+.btn-link {
+    background: transparent;
+    border: none;
+    color: #0052A3;
+    font-size: 13px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* ===========================
+   GALLERY
+=========================== */
+.section-title {
+    font-size: 22px;
+    margin: 18px 0 8px;
+}
+
+.gallery-block {
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* ===========================
+   PRICING
+=========================== */
+.pricing-section {
+    margin-bottom: 25px;
+}
+
+.pricing-box {
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 18px;
+}
+
+.pricing-main {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+/* ===========================
+   CONTACT SELLER — ROUNDED, SHOUTING CARDS
+=========================== */
+/* ===========================
+   CONTACT HEADER BAR (AutoTrader style)
+=========================== */
+
+.contact-header-bar {
+    display: flex;
+    gap: 35px;
+    border-bottom: 2px solid #e1e4eb;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+}
+
+.contact-header-bar span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #6d7580;
+    cursor: pointer;
+    padding-bottom: 6px;
+}
+
+.contact-header-bar span.active {
+    color: #0052A3;
+    border-bottom: 3px solid #0052A3;
+}
+
+.contact-section {
+    display: grid;
+    grid-template-columns: 1.4fr 1.2fr;
+    gap: 30px;
+    margin: 10px 0 45px;
+}
+
+/* COMMON CARD STYLE */
+.seller-card,
+.message-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 24px;
+    border: 1px solid #d7dce5;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+/* DEALER CARD HEADER */
+.seller-header {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 18px;
+    align-items: center;
+}
+
+.seller-logo-box {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: #0052A3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.seller-logo-initials {
+    color: #fff;
+    font-weight: 700;
+    font-size: 26px;
+}
+
+.seller-name {
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.seller-rating-row {
+    font-size: 13px;
+    color: #444;
+}
+
+.seller-rating-row i {
+    color: #f5a623;
+    margin-right: 4px;
+}
+
+.seller-location {
+    font-size: 13px;
+    color: #666;
+}
+
+/* TWO COLUMNS INSIDE DEALER CARD */
+.seller-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin-top: 10px;
+}
+
+.seller-col h4 {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.opening-times,
+.sales-reps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+}
+
+.opening-times li,
+.sales-reps li {
+    margin-bottom: 4px;
+}
+
+.sales-reps li i {
+    margin-left: 6px;
+    color: #0052A3;
+}
+
+/* MESSAGE CARD / FORM */
+.message-card h4 {
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+
+.message-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-row {
+    width: 100%;
+}
+
+.form-row input,
+.form-row textarea {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #cfd4e6;
+    padding: 10px 12px;
+    font-size: 14px;
+    outline: none;
+}
+
+.form-row input:focus,
+.form-row textarea:focus {
+    border-color: #0052A3;
+    box-shadow: 0 0 0 2px rgba(0,82,163,0.15);
+}
+
+.disclaimer {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.4;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+/* ===========================
+   RECOMMENDED & RECENT
+=========================== */
+.recommended-section,
+.recent-section {
+    margin-bottom: 30px;
+}
+
+.recommended-grid,
+.recent-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.rec-card,
+.recent-card {
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 13px;
+}
+
+.rec-img-placeholder,
+.recent-card .rec-img-placeholder {
+    width: 100%;
+    height: 90px;
+    border-radius: 8px;
+    background: #dde3f2;
+    margin-bottom: 8px;
+}
+
+.rec-price {
+    font-weight: 600;
+}
+
+.rec-title {
+    margin-bottom: 4px;
+}
+
+.rec-badge {
+    display: inline-block;
+    margin-top: 2px;
+    padding: 2px 6px;
+    border-radius: 999px;
+    background: #e6f5e8;
+    color: #0a7a2b;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.recent-meta {
+    font-size: 11px;
+    color: #666;
+    margin-top: 4px;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+.site-footer {
+    background: #fff;
+    border-top: 1px solid #ddd;
+    padding: 16px 0;
+}
+
+.footer-inner {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.footer-logo {
+    font-weight: bold;
+    color: #0052A3;
+}
+
+/* ===========================
+   SPEC PANEL
+=========================== */
+.spec-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.55);
+    display: none;
+    z-index: 9998;
+}
+
+.spec-panel {
+    position: fixed;
+    top: 0;
+    right: -450px;
+    width: 450px;
+    height: 100%;
+    background: #fff;
+    box-shadow: -3px 0 12px rgba(0,0,0,0.2);
+    padding: 20px;
+    overflow-y: auto;
+    transition: right 0.35s ease;
+    z-index: 9999;
+}
+
+.spec-panel.open {
+    right: 0;
+}
+
+.spec-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.spec-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.spec-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.spec-category {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.cat-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 0;
+}
+
+.cat-header i {
+    transition: 0.2s;
+}
+
+.cat-body {
+    display: none;
+    padding: 10px 0 5px;
+}
+
+.cat-body .spec-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.cat-body.open {
+    display: block;
+}
+
+.cat-header.open i {
+    transform: rotate(180deg);
+}
+
+.spec-note {
+    font-size: 12px;
+    margin-top: 20px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 900px) {
+    .hero-section,
+    .overview-section,
+    .contact-section {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .recommended-grid,
+    .recent-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .seller-columns {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-highlight-bars {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .recommended-grid,
+    .recent-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-specs {
+        flex-wrap: wrap;
+    }
+}
+/* ===========================
+   RECENT ACTIVITY (AutoTrader style)
+=========================== */
+
+.recent-activity-section {
+    margin-top: 50px;
+}
+
+.recent-activity-section h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.recent-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.recent-card {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e2e6ef;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+    transition: all .2s ease;
+}
+
+.recent-card:hover {
+    transform: translateY(-2px);
+}
+
+.recent-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.recent-info {
+    padding: 12px 15px;
+}
+
+.recent-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0052A3;
+}
+
+.recent-title {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 4px 0;
+}
+
+.recent-meta {
+    font-size: 12px;
+    color: #666;
+}
+
+.recent-meta i {
+    margin-right: 6px;
+}

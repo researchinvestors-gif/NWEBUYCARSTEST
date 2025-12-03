@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vehicle Details | N We Buy Cars</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Global + page CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="buyacar.css">
+  <link rel="stylesheet" href="vehicle-details.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWKCMDA6j7P4p0r1gdAKA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"/>
+
+  <!-- Favicon -->
+  <link rel="icon" href="images/Favicon.jpg" type="image/jpeg" />
+</head>
+<body>
+
+<!-- ===========================
+     HEADER
+=========================== -->
+<header class="main-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="N We Buy Cars">
+    </a>
+
+    <nav>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">HOME</a></li>
+        <li class="active"><a href="buyacar.html">BUY A CAR</a></li>
+        <li><a href="#">USED LOCALLY</a></li>
+        <li><a href="#">DIRECT IMPORT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ===========================
+     MAIN PAGE
+=========================== -->
+<main class="vehicle-details-page">
+
+  <!-- Breadcrumbs with icons -->
+  <nav class="breadcrumbs">
+    <a href="index.html">
+      <i class="fa-solid fa-house"></i> Home
+    </a>
+    <span class="crumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+    <a href="buyacar.html">
+      <i class="fa-solid fa-car"></i> Vehicles
+    </a>
+    <span class="crumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+    <span id="breadcrumbTitle">Vehicle</span>
+  </nav>
+
+  <!-- Back link -->
+  <a href="buyacar.html" class="back-link">
+    <i class="fa-solid fa-arrow-left"></i> Back to Buy a Car
+  </a>
+
+  <!-- Where JS will render the top panel (gallery + specs) -->
+  <section id="detailsRoot"></section>
+
+  <!-- Description + features + seller + engine media -->
+  <section id="lowerRoot"></section>
+
+  <!-- Similar vehicles -->
+  <section id="similarRoot"></section>
+
+  <!-- Recently viewed vehicles -->
+  <section id="recentRoot"></section>
+
+</main>
+
+<!-- Floating WhatsApp button -->
+<a href="#" id="floatingWA" class="floating-wa-btn" aria-label="Chat on WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<script src="config.js"></script>
+
+<!-- ===========================
+     SCRIPTS
+=========================== -->
+<script src="cars.js"></script>
+<script>
+(function () {
+  const WA_PHONE = "254700000000"; // change to your WhatsApp number (no +)
+
+  const params = new URLSearchParams(window.location.search);
+  const vehicleId = params.get("id");
+
+  const cars = window.carsDB || {};
+  const car  = cars[vehicleId];
+
+  const detailsRoot = document.getElementById("detailsRoot");
+  const lowerRoot   = document.getElementById("lowerRoot");
+  const similarRoot = document.getElementById("similarRoot");
+  const recentRoot  = document.getElementById("recentRoot");
+  const breadcrumbTitle = document.getElementById("breadcrumbTitle");
+
+  if (!car) {
+    detailsRoot.innerHTML = `
+      <div class="not-found">
+        Vehicle not found. <a href="buyacar.html">Back to Buy a Car</a>
+      </div>`;
+    return;
+  }
+
+  // Update breadcrumb text
+  breadcrumbTitle.textContent = car.title;
+
+  const pageUrl    = window.location.href;
+  const vehicleTitle = car.title;
+  const images = (car.images && car.images.length)
+    ? car.images
+    : ["images/default-car.jpg"];
+
+  const encodedMessage = encodeURIComponent(
+    "Hello, I'm interested in the " + vehicleTitle + ". Here is the link: " + pageUrl
+  );
+
+  // =======================
+  // TOP PANEL (GALLERY + SPECS)
+  // =======================
+  detailsRoot.innerHTML = `
+    <div class="vehicle-main-box">
+
+      <!-- LEFT: GALLERY -->
+      <div class="gallery">
+        <div class="main-image">
+          <button class="image-nav prev" type="button">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <img src="${images[0]}" alt="${vehicleTitle}" data-index="0">
+          <button class="image-nav next" type="button">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="thumb-row">
+          ${images.map((img, i) => `
+            <button class="thumb-btn" type="button" data-index="${i}">
+              <img src="${img}" alt="${vehicleTitle} thumbnail ${i + 1}">
+            </button>
+          `).join("")}
+        </div>
+      </div>
+
+      <!-- RIGHT: MAIN INFO -->
+      <div class="vehicle-info-box">
+        <h1>${vehicleTitle}</h1>
+        <div class="price">KES ${car.priceKES.toLocaleString()}</div>
+
+        <div class="tags">
+          ${car.year ? `<span>${car.year}</span>` : ""}
+          ${car.fuel ? `<span>${car.fuel}</span>` : ""}
+          ${car.transmission ? `<span>${car.transmission}</span>` : ""}
+          ${car.stockLocation ? `<span>${car.stockLocation}</span>` : ""}
+        </div>
+
+        <h3>Vehicle Specifications</h3>
+        <div class="spec-grid">
+          <div>
+            <label>Body Type</label>
+            <span>${car.bodyType || "-"}</span>
+          </div>
+          <div>
+            <label>Mileage</label>
+            <span>${car.mileageKm ? car.mileageKm.toLocaleString() + " km" : "-"}</span>
+          </div>
+          <div>
+            <label>Engine</label>
+            <span>${car.engine || (car.cc ? car.cc + " CC" : "-")}</span>
+          </div>
+          <div>
+            <label>Fuel Type</label>
+            <span>${car.fuel || "-"}</span>
+          </div>
+          <div>
+            <label>Transmission</label>
+            <span>${car.transmission || "-"}</span>
+          </div>
+          <div>
+            <label>Drive</label>
+            <span>${car.drivetrain || "-"}</span>
+          </div>
+        </div>
+
+        <!-- PRIMARY ACTION BUTTONS -->
+        <div class="action-buttons">
+          <a class="btn-whatsapp" id="waEnquire" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i> Enquire via WhatsApp
+          </a>
+
+          <a class="btn-call" href="tel:+254700000000">
+            <i class="fa-solid fa-phone"></i> Call now
+          </a>
+        </div>
+
+        <!-- SHARE SECTION -->
+        <div class="share-section">
+          <h4>Share this:</h4>
+          <div class="share-icons">
+            <a id="shareWA" target="_blank" aria-label="Share on WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a id="shareFB" target="_blank" aria-label="Share on Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a id="shareX" target="_blank" aria-label="Share on X">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a id="copyLink" href="#" aria-label="Copy link">
+              <i class="fa-solid fa-link"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // =======================
+  // GALLERY LOGIC
+  // =======================
+  let currentIndex = 0;
+  const mainImg   = detailsRoot.querySelector(".main-image img");
+  const thumbBtns = Array.from(detailsRoot.querySelectorAll(".thumb-btn"));
+  const prevBtn   = detailsRoot.querySelector(".image-nav.prev");
+  const nextBtn   = detailsRoot.querySelector(".image-nav.next");
+
+  function showImage(idx) {
+    if (!images.length) return;
+
+    if (idx < 0) idx = images.length - 1;
+    if (idx >= images.length) idx = 0;
+
+    currentIndex = idx;
+    mainImg.src = images[idx];
+    mainImg.dataset.index = String(idx);
+
+    thumbBtns.forEach((btn, i) => {
+      btn.classList.toggle("active", i === idx);
+    });
+  }
+
+  thumbBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const idx = parseInt(btn.dataset.index, 10);
+      showImage(idx);
+    });
+  });
+
+  prevBtn.addEventListener("click", () => showImage(currentIndex - 1));
+  nextBtn.addEventListener("click", () => showImage(currentIndex + 1));
+  showImage(0);
+
+  // =======================
+  // ACTION BUTTONS + SHARE LINKS
+  // =======================
+  const waEnquire = document.getElementById("waEnquire");
+  const shareWA   = document.getElementById("shareWA");
+  const shareFB   = document.getElementById("shareFB");
+  const shareX    = document.getElementById("shareX");
+  const copyLink  = document.getElementById("copyLink");
+  const floatingWA = document.getElementById("floatingWA");
+
+  // main WhatsApp enquire button
+  waEnquire.href =
+    "https://wa.me/" + WA_PHONE + "?text=" + encodedMessage;
+
+  // floating WhatsApp button
+  floatingWA.href =
+    "https://wa.me/" + WA_PHONE + "?text=" + encodedMessage;
+
+  // share buttons
+  shareWA.href =
+    "https://wa.me/?text=" + encodedMessage;
+
+  shareFB.href =
+    "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(pageUrl);
+
+  shareX.href =
+    "https://twitter.com/intent/tweet?text=" + encodedMessage;
+
+  copyLink.addEventListener("click", function (e) {
+    e.preventDefault();
+    navigator.clipboard.writeText(pageUrl).then(() => {
+      alert("Link copied to clipboard!");
+    });
+  });
+
+  // =======================
+  // LOWER SECTION: DESCRIPTION, FEATURES, SELLER, ENGINE MEDIA
+  // =======================
+  const engineMediaUrl = car.engineVideo || car.videoUrl || "";
+
+  lowerRoot.innerHTML = `
+    <section class="info-section">
+      <div class="left-box">
+        <h3>Description</h3>
+        <p>${car.description || "No description provided."}</p>
+      </div>
+
+      <div class="right-box">
+        <h3>Features</h3>
+        ${
+          car.features && car.features.length
+            ? `<ul>${car.features.map(f => `<li>${f}</li>`).join("")}</ul>`
+            : "<p>No features listed.</p>"
+        }
+      </div>
+    </section>
+
+    <section class="seller-media-section">
+      <div class="seller-card">
+        <h3>Seller</h3>
+        <p><strong>Name:</strong> ${car.seller || "N We Buy Cars"}</p>
+        <p><strong>Location:</strong> ${car.stockLocation || "Kenya"}</p>
+        <p><strong>Make:</strong> ${car.make || "-"}</p>
+      </div>
+
+      <div class="media-card">
+        <h3>Engine sound / video demo</h3>
+        ${
+          engineMediaUrl
+            ? `<video controls width="100%">
+                 <source src="${engineMediaUrl}">
+                 Your browser does not support the video tag.
+               </video>`
+            : "<p>Engine sound / video demo coming soon.</p>"
+        }
+      </div>
+    </section>
+  `;
+
+  // =======================
+  // SIMILAR VEHICLES (same body type)
+  // =======================
+  function getSimilarVehicles() {
+    const allCars = Object.values(cars);
+    return allCars
+      .filter(c =>
+        c.id !== car.id &&
+        c.bodyType &&
+        car.bodyType &&
+        c.bodyType.toLowerCase() === car.bodyType.toLowerCase()
+      )
+      .slice(0, 4);
+  }
+
+  const similar = getSimilarVehicles();
+
+  if (similar.length) {
+    similarRoot.innerHTML = `
+      <section class="similar-section">
+        <h2>Similar Vehicles</h2>
+        <div class="similar-grid">
+          ${similar.map(sim => `
+            <a class="similar-card" href="vehicle-details.html?id=${sim.id}">
+              <div class="similar-imgbox">
+                <img src="${(sim.images && sim.images[0]) || "images/default-car.jpg"}"
+                     alt="${sim.title}">
+              </div>
+              <div class="similar-info">
+                <h4>${sim.title}</h4>
+                <div class="similar-price">KES ${sim.priceKES.toLocaleString()}</div>
+                <div class="similar-tags">
+                  ${sim.year ? `<span>${sim.year}</span>` : ""}
+                  ${sim.fuel ? `<span>${sim.fuel}</span>` : ""}
+                  ${sim.transmission ? `<span>${sim.transmission}</span>` : ""}
+                </div>
+              </div>
+            </a>
+          `).join("")}
+        </div>
+      </section>
+    `;
+  }
+
+  // =======================
+  // RECENTLY VIEWED (localStorage)
+  // =======================
+  const STORAGE_KEY = "recentVehicles";
+
+  let recentList = [];
+  try {
+    recentList = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    if (!Array.isArray(recentList)) recentList = [];
+  } catch (e) {
+    recentList = [];
+  }
+
+  // remove current id if already there, then add to front
+  recentList = recentList.filter(id => id !== car.id);
+  recentList.unshift(car.id);
+  if (recentList.length > 8) recentList = recentList.slice(0, 8);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(recentList));
+
+  const recentToShow = recentList.filter(id => id !== car.id).map(id => cars[id]).filter(Boolean).slice(0, 4);
+
+  if (recentToShow.length) {
+    recentRoot.innerHTML = `
+      <section class="recent-section">
+        <h2>Recently Viewed</h2>
+        <div class="similar-grid">
+          ${recentToShow.map(rc => `
+            <a class="similar-card" href="vehicle-details.html?id=${rc.id}">
+              <div class="similar-imgbox">
+                <img src="${(rc.images && rc.images[0]) || "images/default-car.jpg"}"
+                     alt="${rc.title}">
+              </div>
+              <div class="similar-info">
+                <h4>${rc.title}</h4>
+                <div class="similar-price">KES ${rc.priceKES.toLocaleString()}</div>
+                <div class="similar-tags">
+                  ${rc.year ? `<span>${rc.year}</span>` : ""}
+                  ${rc.fuel ? `<span>${rc.fuel}</span>` : ""}
+                  ${rc.transmission ? `<span>${rc.transmission}</span>` : ""}
+                </div>
+              </div>
+            </a>
+          `).join("")}
+        </div>
+      </section>
+    `;
+  }
+
+})();
+</script>
+<!-- MAIN VEHICLE DETAILS SCRIPT -->
+<script>
+(function () {
+    /* your LONG existing script remains unchanged */
+})();
+</script>
+
+<!-- WHATSAPP/PHONE BUTTON FIXED SCRIPT -->
+<script>
+(function () {
+
+  const params = new URLSearchParams(window.location.search);
+  const vehicleId = params.get("id");
+
+  // WA & CALL numbers now come from config.js  
+  const waNumber = window.WA_NUMBER;
+  const callNumber = window.CALL_NUMBER;
+
+  const pageUrl = window.location.href;
+  const message = `Hello, I'm interested in this vehicle. Here is the link: ${pageUrl}`;
+  const encoded = encodeURIComponent(message);
+
+  // Update WhatsApp Enquire
+  const waEnquire = document.getElementById("waEnquire");
+  waEnquire.href = `https://wa.me/${waNumber}?text=${encoded}`;
+
+  // Floating WhatsApp
+  const floatingWA = document.getElementById("floatingWA");
+  floatingWA.href = `https://wa.me/${waNumber}?text=${encoded}`;
+
+  // Update "Call Now" button
+  const callBtn = document.querySelector(".btn-call");
+  callBtn.href = `tel:${callNumber}`;
+
+})();
+</script>
+</body>
+</html>

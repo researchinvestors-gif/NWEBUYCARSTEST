@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell My Car | N We Buy Cars</title>
+    <link rel="stylesheet" href="sellmycar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<header class="main-header">
+    <div class="header-inner">
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="N We Buy Cars">
+            <link rel="icon" href="images/Favicon.jpg" type="image/jpeg" />
+        </a>
+
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="buyacar.html">BUY A CAR</a></li>
+                <li><a href="sellmycar-listings.html">SELL MY CAR</a></li>
+                <li><a href="directimport.html">DIRECT IMPORT</a></li>
+            </ul>
+
+        </nav>
+    </div>
+</header>
+
+<main class="sell-page">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="index.html"><i class="fa-solid fa-house"></i></a> › <span>Sell My Car</span>
+    </div>
+
+    <!-- Title -->
+    <h1 class="page-title">Sell Your Car</h1>
+    <p class="sub-text">Upload high-quality photos and enter accurate vehicle details.</p>
+
+    <!-- IMAGE GALLERY LIKE AUTOTRADER -->
+    <section class="gallery-section">
+
+        <div class="main-image-box">
+            <img id="mainPreview" class="main-preview" src="images/placeholder-large.png">
+        </div>
+
+        <div class="thumb-container" id="thumbContainer">
+            <label class="thumb-upload">
+                <input type="file" id="mainImageInput" accept="image/*">
+                <i class="fa-solid fa-camera"></i>
+            </label>
+        </div>
+
+    </section>
+
+    <!-- FORM -->
+    <section class="form-section">
+        <h2>Vehicle Details</h2>
+
+        <div class="grid-2">
+
+            <div class="form-group">
+                <label>Make</label>
+                <input type="text" id="make" placeholder="e.g. Toyota">
+            </div>
+
+            <div class="form-group">
+                <label>Model</label>
+                <input type="text" id="model" placeholder="e.g. Land Cruiser V8">
+            </div>
+
+            <div class="form-group">
+                <label>Year</label>
+                <input type="number" id="year">
+            </div>
+
+            <div class="form-group">
+                <label>Mileage (km)</label>
+                <input type="number" id="mileage">
+            </div>
+
+            <div class="form-group">
+                <label>Fuel Type</label>
+                <select id="fuel">
+                    <option>Petrol</option>
+                    <option>Diesel</option>
+                    <option>Hybrid</option>
+                    <option>Electric</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Transmission</label>
+                <select id="transmission">
+                    <option>Automatic</option>
+                    <option>Manual</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label>Exterior Colour</label>
+            <input type="text" id="color">
+        </div>
+
+        <div class="form-group">
+            <label>Condition</label>
+            <select id="condition">
+                <option>Local Used</option>
+                <option>Foreign Used</option>
+                <option>Brand New</option>
+            </select>
+        </div>
+
+        <h2>Seller Information</h2>
+
+        <div class="grid-2">
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" id="sellerName">
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" id="phone">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>WhatsApp Number</label>
+            <input type="text" id="whatsapp">
+        </div>
+
+        <div class="form-group">
+            <label>Additional Description</label>
+            <textarea id="description" placeholder="Describe condition, service history, extras…"></textarea>
+        </div>
+
+        <button id="submitCar" class="submit-btn">Submit Vehicle</button>
+
+    </section>
+
+</main>
+
+<script src="sellmycar.js"></script>
+</body>
+</html>

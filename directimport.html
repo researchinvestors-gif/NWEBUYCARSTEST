@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Direct Import | N We Buy Cars</title>
+  <link rel="icon" href="images/Favicon.jpg" type="image/jpeg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="direct-import.css">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+
+<header class="main-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="N We Buy Cars">
+      <link rel="icon" type="image/x-icon" href="/images/favicon.jpg">
+    </a>
+
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="buyacar.html">BUY A CAR</a></li>
+        <li><a href="sellmycar-listings.html">USED LOCALLY</a></li>
+        <li class="active"><a href="directimport.html">DIRECT IMPORT</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="di-page">
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumbs">
+    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+    <span><i class="fa-solid fa-angle-right"></i></span>
+    <span>Direct Import / International Stock</span>
+  </nav>
+
+  <!-- Filter bar -->
+  <section class="di-filters">
+    <div class="filter-row">
+      <div class="filter-group">
+        <label>Make</label>
+        <select id="filterMake">
+          <option value="">All</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label>Model</label>
+        <input type="text" id="filterModel" placeholder="e.g. LAND CRUISER 250">
+      </div>
+
+      <div class="filter-group">
+        <label>Year From</label>
+        <input type="number" id="filterYearFrom" placeholder="2015">
+      </div>
+
+      <div class="filter-group">
+        <label>Year To</label>
+        <input type="number" id="filterYearTo" placeholder="2024">
+      </div>
+
+      <div class="filter-group">
+        <label>Max Price (USD)</label>
+        <input type="number" id="filterMaxPrice" placeholder="45000">
+      </div>
+
+      <div class="filter-group">
+        <label>&nbsp;</label>
+        <button id="filterSearchBtn" class="btn-red">
+          <i class="fa-solid fa-magnifying-glass"></i> Search
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results summary + sort -->
+  <section class="di-results-header">
+    <div id="resultsCount">0 vehicles found</div>
+    <div class="sort-wrapper">
+      <label for="sortSelect">Sort:</label>
+      <select id="sortSelect">
+        <option value="newest">Newest</option>
+        <option value="priceLow">Price: Low to High</option>
+        <option value="priceHigh">Price: High to Low</option>
+        <option value="mileageLow">Mileage: Low to High</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Vehicles list -->
+  <section id="diList" class="di-list"></section>
+</main>
+
+<script src="imports.js"></script>
+<script>
+  const listEl = document.getElementById("diList");
+  const resultsCountEl = document.getElementById("resultsCount");
+
+  const makeSelect = document.getElementById("filterMake");
+  const modelInput = document.getElementById("filterModel");
+  const yearFromInput = document.getElementById("filterYearFrom");
+  const yearToInput = document.getElementById("filterYearTo");
+  const maxPriceInput = document.getElementById("filterMaxPrice");
+  const searchBtn = document.getElementById("filterSearchBtn");
+  const sortSelect = document.getElementById("sortSelect");
+
+  let allCars = getImportCarsList();
+  let filteredCars = allCars.slice();
+
+  // Populate make filter
+  const makes = [...new Set(allCars.map(c => c.make))].sort();
+  makes.forEach(m => {
+    const opt = document.createElement("option");
+    opt.value = m;
+    opt.textContent = m;
+    makeSelect.appendChild(opt);
+  });
+
+  function applyFilters() {
+    const make = makeSelect.value.trim();
+    const model = modelInput.value.trim().toLowerCase();
+    const yearFrom = parseInt(yearFromInput.value, 10) || null;
+    const yearTo = parseInt(yearToInput.value, 10) || null;
+    const maxPrice = parseInt(maxPriceInput.value, 10) || null;
+
+    filteredCars = allCars.filter(c => {
+      if (make && c.make !== make) return false;
+      if (model && !c.model.toLowerCase().includes(model)) return false;
+      if (yearFrom && (!c.year || c.year < yearFrom)) return false;
+      if (yearTo && (!c.year || c.year > yearTo)) return false;
+      if (maxPrice && c.priceUSD > maxPrice) return false;
+      return true;
+    });
+
+    applySort();
+    renderList();
+  }
+
+  function applySort() {
+    const sort = sortSelect.value;
+    filteredCars.sort((a, b) => {
+      if (sort === "priceLow") return a.priceUSD - b.priceUSD;
+      if (sort === "priceHigh") return b.priceUSD - a.priceUSD;
+      if (sort === "mileageLow") return (a.mileageKm || 0) - (b.mileageKm || 0);
+      // default newest
+      return (b.year || 0) - (a.year || 0) || (b.month || 0) - (a.month || 0);
+    });
+  }
+
+  function renderList() {
+    resultsCountEl.textContent = `${filteredCars.length} vehicle(s) found`;
+
+    if (!filteredCars.length) {
+      listEl.innerHTML = `<p class="no-results">No vehicles match the selected filters.</p>`;
+      return;
+    }
+
+    listEl.innerHTML = filteredCars.map(c => `
+      <article class="di-card">
+        <div class="di-card-img">
+          <a href="import-details.html?id=${c.id}">
+            <img src="${c.images[0]}" alt="${c.title}">
+          </a>
+          ${c.partnerStock ? `<span class="badge-partner">Partner's Stock</span>` : ""}
+          ${c.discountTag ? `<span class="badge-discount">${c.discountTag}</span>` : ""}
+        </div>
+
+        <div class="di-card-main">
+          <div class="di-card-header">
+            <h2><a href="import-details.html?id=${c.id}">${c.title}</a></h2>
+            <p class="di-location">${c.location || ""}</p>
+          </div>
+
+          <div class="di-price-block">
+            <div class="di-price-row">
+              <span class="di-label">Vehicle Price</span>
+              <span class="di-price">USD ${c.priceUSD.toLocaleString()}</span>
+            </div>
+            <div class="di-price-row small">
+              <span class="di-label">Total Price</span>
+              <span>USD ${(c.totalUSD || c.priceUSD).toLocaleString()}</span>
+            </div>
+          </div>
+
+          <div class="di-spec-row">
+            <span><i class="fa-solid fa-road"></i> ${c.mileageKm ? c.mileageKm.toLocaleString() + " km" : "-"}</span>
+            <span><i class="fa-solid fa-oil-can"></i> ${c.engineCC ? c.engineCC.toLocaleString() + " cc" : "-"}</span>
+            <span><i class="fa-solid fa-gear"></i> ${c.transmission || "-"}</span>
+            <span><i class="fa-solid fa-road-circle-exclamation"></i> ${c.drive || "-"}</span>
+            <span><i class="fa-solid fa-gas-pump"></i> ${c.fuel || "-"}</span>
+          </div>
+
+          <div class="di-stock-row">
+            <span>Stock ID: <strong>${c.stockId || "-"}</strong></span>
+            <span>Year: ${c.year || "-"} / ${c.month || ""}</span>
+          </div>
+        </div>
+
+        <div class="di-card-cta">
+          <button class="btn-red" onclick="window.location.href='import-details.html?id=${c.id}'">
+            Get an estimate
+          </button>
+        </div>
+      </article>
+    `).join("");
+  }
+
+  searchBtn.addEventListener("click", applyFilters);
+  sortSelect.addEventListener("change", () => {
+    applySort();
+    renderList();
+  });
+
+  // initial load
+  applyFilters();
+</script>
+
+</body>
+</html>

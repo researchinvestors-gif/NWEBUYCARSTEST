@@ -1,0 +1,1475 @@
+:root {
+  --primary-blue: #0052A3;
+  --primary-orange: #FF6600;
+}
+
+/* ===========================
+   BASE
+=========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  line-height: 1.6;
+  background: #fff;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.accent-orange {
+  color: var(--primary-orange);
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 5vw;
+  margin: 0 auto;
+}
+
+/* ===========================
+   HEADER / NAVBAR
+=========================== */
+.main-header {
+  background: #fff;
+  border-bottom: 4px solid var(--primary-blue);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.topbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 5vw;
+  min-height: 90px;
+}
+
+/* Logo area */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 85px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.03);
+}
+
+/* Navigation menu */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 36px;
+  align-items: center;
+  margin: 0;
+}
+
+.nav-menu a {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 15.8px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #000;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+  color: var(--primary-orange);
+}
+
+/* Right-side logo + text */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sub-logo {
+  height: 42px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.brand-text {
+  color: var(--primary-blue);
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.4px;
+  line-height: 1.1;
+}
+
+/* Hamburger button (hidden on desktop) */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  margin-left: 16px;
+  color: #000;
+}
+
+/* MOBILE NAV */
+@media (max-width: 768px) {
+  .nav-menu {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0px 6px 20px rgba(0,0,0,0.12);
+    padding: 20px 0;
+    display: none;
+    flex-direction: column;
+    z-index: 9999;
+  }
+
+  .nav-menu.show {
+    display: flex;
+  }
+
+  .nav-menu a {
+    padding: 12px 20px;
+    text-align: center;
+    width: 100%;
+    font-weight: 700;
+    border-bottom: 1px solid #f1f1f1;
+    color: #000;
+  }
+
+  .nav-right {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    font-size: 28px;
+  }
+  .topbar-inner {
+    justify-content: space-between !important;
+  }
+
+  /* Force hamburger to the far right */
+  .hamburger {
+    margin-left: auto !important;
+    margin-right: 10px !important;
+    order: 3 !important;
+  }
+
+  /* Logo on the left */
+  .logo {
+    order: 1 !important;
+  }
+
+  /* Hide nav-right on mobile */
+  .nav-right {
+    display: none !important;
+  }
+}
+
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+#dropdownBtn i {
+  transition: transform .25s ease;
+}
+
+.dropdown.open #dropdownBtn i {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  min-width: 180px;
+  box-shadow: 0 12px 26px rgba(0,0,0,.12);
+  z-index: 2000;
+  overflow: hidden;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 11px 14px;
+  font-weight: 600;
+}
+
+.dropdown-menu li a:hover {
+  background: #f7f9fb;
+  color: var(--primary-orange);
+}
+
+/* ===========================
+   HERO + SLIDESHOW
+=========================== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.slideshow-container {
+  position: absolute;
+  inset: 0;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(.72);
+}
+
+.caption {
+  position: absolute;
+  bottom: 25%;
+  left: 10%;
+  color: #fff;
+  z-index: 2;
+}
+
+.caption h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1.15;
+  max-width: 620px;
+  text-wrap: balance;
+}
+
+/* DESKTOP HERO SEARCH (inside hero, right side) */
+.hero-search {
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 28px;
+  box-shadow: 0 14px 48px rgba(0, 0, 0, 0.22);
+  padding: 60px 58px;
+  width: 570px;
+  z-index: 3;
+  font-family: 'Roboto', sans-serif;
+  color: #111;
+}
+
+.hero-search h3 {
+  color: var(--primary-blue);
+  font-size: 22px;
+  font-weight: 900;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.hero-search p {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.hero-search select {
+  width: 100%;
+  padding: 20px 22px;
+  margin-bottom: 22px;
+  border: 1px solid #cfcfcf;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: rgba(255,255,255,0.9);
+  appearance: none;
+  outline: none;
+  background-image: url("data:image/svg+xml,%3Csvg fill='%230052A3' height='22' viewBox='0 0 24 24' width='22' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  background-size: 20px;
+  cursor: pointer;
+}
+
+.hero-search select:focus {
+  border-color: var(--primary-orange);
+}
+
+.hero-search button {
+  width: 100%;
+  background-color: var(--primary-orange);
+  color: #fff;
+  font-size: 17.5px;
+  font-weight: 900;
+  padding: 20px 0;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+  box-shadow: 0 10px 28px rgba(255,102,0,0.35);
+}
+
+.hero-search button:hover {
+  background-color: #e65c00;
+  box-shadow: 0 12px 30px rgba(255,102,0,0.45);
+}
+
+/* Tablet adjustments */
+@media (max-width: 1100px) {
+  .caption h1 {
+    font-size: 2.4rem;
+  }
+
+  .hero-search {
+    right: 6%;
+  }
+}
+
+/* ===========================
+   SELL YOUR CAR BANNER
+=========================== */
+.sell-your-car {
+  padding: 90px 0;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+.sell-banner {
+  width: 92%;
+  max-width: 1200px;
+  height: 380px;
+  border-radius: 18px;
+  background: url("images/sell.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+}
+
+/* dark overlay */
+.sell-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0) 100%);
+}
+
+.sell-content {
+  position: relative;
+  color: #fff;
+  max-width: 420px;
+  margin-left: 60px;
+  z-index: 1;
+}
+
+.sell-content h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.sell-content p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.9);
+}
+
+.btn-sell {
+  background: #0071E3;
+  color: #fff;
+  font-weight: 700;
+  padding: 14px 38px;
+  border-radius: 8px;
+  font-size: 1rem;
+  display: inline-block;
+  transition: background 0.25s ease;
+}
+
+.btn-sell:hover {
+  background: #005bb5;
+}
+
+/* Responsive sell banner */
+@media (max-width: 768px) {
+  .sell-banner {
+    height: 320px;
+    justify-content: flex-start;
+  }
+
+  .sell-content {
+    margin-left: 30px;
+    max-width: 85%;
+  }
+
+  .sell-content h2 {
+    font-size: 2rem;
+  }
+}
+
+/* ===========================
+   FEATURED VEHICLES
+=========================== */
+.featured-vehicles {
+  padding: 70px 0;
+}
+
+.featured-vehicles h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--primary-blue);
+}
+
+.vehicle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.vehicle-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  overflow: hidden;
+  text-align: center;
+  transition: .25s;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-4px);
+}
+
+.vehicle-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.vehicle-card h4 {
+  color: var(--primary-blue);
+  margin-top: 10px;
+}
+
+/* Unified section headings */
+.sell-your-car h2,
+.featured-vehicles h2,
+.car-news h2,
+.car-reviews h2 {
+  text-align: center;
+  color: var(--primary-blue);
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+
+/* ===========================
+   CAR NEWS & ADVICE
+=========================== */
+.car-news {
+  background: #fff;
+  padding: 90px 5vw;
+}
+
+.news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 45px;
+}
+
+.news-header h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.more-link {
+  color: var(--primary-blue);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.more-link:hover {
+  color: var(--primary-orange);
+}
+
+.news-grid {
+  display: flex;
+  gap: 40px;
+  align-items: stretch;
+}
+
+/* Left featured article */
+.featured-article {
+  flex: 2;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.12);
+}
+
+.featured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+  transition: transform 0.5s ease;
+}
+
+.featured-article:hover img {
+  transform: scale(1.05);
+}
+
+.featured-text {
+  padding: 22px 8px 28px 8px;
+}
+
+.featured-text h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 6px;
+}
+
+.featured-text .meta {
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.featured-text .excerpt {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.55;
+}
+
+/* Side news cards */
+.side-articles {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.news-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border-radius: 10px;
+}
+
+.news-card:hover {
+  transform: translateY(-3px);
+}
+
+.news-card img {
+  width: 120px;
+  height: 80px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+  transition: transform 0.4s ease;
+}
+
+.news-card:hover img {
+  transform: scale(1.06);
+}
+
+.card-text h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 6px;
+  line-height: 1.35;
+}
+
+.card-text p {
+  font-size: 0.88rem;
+  color: #555;
+  line-height: 1.45;
+}
+
+/* News responsive */
+@media (max-width: 992px) {
+  .news-grid {
+    flex-direction: column;
+  }
+
+  .side-articles {
+    flex-direction: column;
+  }
+}
+
+/* ===========================
+   CAR REVIEWS – GRID
+=========================== */
+.car-reviews {
+  background: #fff;
+  padding: 90px 5vw;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.review-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  overflow: hidden;
+  padding-bottom: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+}
+
+.review-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 18px 18px 0 0;
+}
+
+.review-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 8px 12px;
+  color: #000;
+}
+
+.review-card p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0 12px 10px 12px;
+  line-height: 1.45;
+}
+
+.review-card .meta {
+  font-size: 0.8rem;
+  color: #888;
+  margin: 8px 12px 0 12px;
+}
+
+/* Review grid responsive */
+@media (max-width: 992px) {
+  .review-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .review-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Make entire review tile clickable */
+.review-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.review-link:hover .review-card {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.15);
+}
+
+.review-link:hover h3 {
+  color: var(--primary-orange);
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+footer {
+  background: var(--primary-blue);
+  color: #fff;
+  padding: 60px 20px;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-column h3 {
+  text-transform: uppercase;
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: #fff;
+}
+
+.footer-links a:hover {
+  color: var(--primary-orange);
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.12);
+}
+
+.social-icons a:hover {
+  background: var(--primary-orange);
+}
+
+.copyright {
+  text-align: center;
+  margin-top: 30px;
+  font-size: .9rem;
+}
+
+/* ===========================
+   NEWS PAGE LAYOUT
+=========================== */
+.page-header {
+  background: var(--primary-blue);
+  color: #fff;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.news-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.news-item {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+}
+
+.news-item:hover {
+  transform: translateY(-4px);
+}
+
+.news-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.news-body {
+  padding: 20px;
+}
+
+.news-body .tag {
+  background: var(--primary-orange);
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 3px 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.news-body h3 {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  color: var(--primary-blue);
+}
+
+.news-body p {
+  color: #444;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.news-body .meta {
+  color: #777;
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+
+/* Sidebar widgets */
+.news-sidebar .widget {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.news-sidebar h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: 15px;
+}
+
+.news-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.news-sidebar ul li {
+  margin-bottom: 10px;
+  color: #444;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.news-sidebar ul li:hover {
+  color: var(--primary-orange);
+}
+
+/* Newsletter widget */
+.newsletter input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.newsletter button {
+  width: 100%;
+  background: var(--primary-blue);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.newsletter button:hover {
+  background: var(--primary-orange);
+}
+
+/* Team widget */
+.team ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.team li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.team img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.team span {
+  font-weight: 600;
+}
+
+/* News layout responsive */
+@media (max-width: 992px) {
+  .news-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===========================
+   MOBILE SUBMENU (More ▼)
+=========================== */
+.mobile-submenu {
+  display: none;
+  flex-direction: column;
+  background: #ffffff;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 5px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  z-index: 99999;
+}
+
+.mobile-submenu.show {
+  display: flex;
+}
+
+.mobile-submenu a {
+  padding: 12px 16px;
+  border-bottom: 1px solid #efefef;
+}
+
+/* ===========================
+   LAYERING
+=========================== */
+section {
+  position: relative;
+  z-index: 5;
+}
+
+/* ===========================
+   MOBILE SEARCH – iPOPCARS STYLE (LIGHT VERSION)
+   (Desktop hero remains unchanged)
+=========================== */
+@media (max-width: 992px) {
+  /* put hero content into column flow for smaller screens */
+  .hero {
+    height: auto;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .slideshow-container {
+    position: relative;
+    height: 55vh;
+  }
+
+  .slide img {
+    height: 100%;
+  }
+
+  .hero-search {
+    position: static;
+    transform: none;
+    margin: 18px auto 0;
+    width: 92%;
+    max-width: 480px;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+  }
+
+  .caption {
+    bottom: 18%;
+    left: 7%;
+  }
+}
+
+@media (max-width: 768px) {
+  /* On small mobile, make search block look like iPOPCars light version */
+  .hero {
+    height: auto;
+    padding-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .slideshow-container {
+    position: relative;
+    height: 42vh;
+  }
+
+  .caption {
+    display: none; /* same as ipopcars: no big text over hero */
+  }
+
+  .hero-search {
+    position: static !important;
+    transform: none !important;
+    margin: 18px auto 0 !important;
+    width: 92% !important;
+    max-width: 520px !important;
+
+    background: #ffffff !important;
+    border-radius: 26px !important;
+    box-shadow: 0 12px 26px rgba(0,0,0,0.16) !important;
+    padding: 28px 20px !important;
+  }
+
+  .hero-search h3 {
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .hero-search p {
+    text-align: center;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+
+  .hero-search select,
+  .hero-search button {
+    width: 100% !important;
+    padding: 16px 18px !important;
+    margin-bottom: 14px !important;
+    border-radius: 30px !important;
+    font-size: 0.95rem !important;
+  }
+
+  .hero-search select {
+    border: 1px solid #dcdcdc !important;
+    background-color: #ffffff !important;
+  }
+
+  .hero-search button {
+    background: var(--primary-orange) !important;
+    box-shadow: 0 10px 22px rgba(255,102,0,0.35) !important;
+  }
+}
+/* ============================================================
+   GLOBAL RESET & BASE STYLE
+============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5f7fb;
+    color: #333;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ============================================================
+   HEADER & NAVIGATION
+============================================================ */
+
+.main-header {
+    background: #fff;
+    border-bottom: 3px solid #0052A3;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.header-inner {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo img {
+    height: 70px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-menu li a {
+    font-size: 15px;
+    font-weight: 600;
+    color: #0052A3;
+}
+
+.nav-menu li a:hover,
+.nav-menu li a.active {
+    color: #FF6600;
+}
+
+/* DROPDOWN */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    position: absolute;
+    background: white;
+    top: 28px;
+    left: 0;
+    list-style: none;
+    padding: 10px 0;
+    width: 180px;
+    border: 1px solid #ddd;
+    display: none;
+    border-radius: 8px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li {
+    padding: 8px 18px;
+}
+
+.dropdown-menu li:hover {
+    background: #f1f5ff;
+}
+
+/* ============================================================
+   HERO BANNERS (Offers, About, Contact)
+============================================================ */
+
+.offers-hero, .about-hero, .contact-hero {
+    text-align: center;
+    padding: 60px 20px 40px;
+    background: #0052A3;
+    color: white;
+}
+
+.offers-hero h1, .about-hero h1, .contact-hero h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.offers-hero p, .about-hero p, .contact-hero p {
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+/* ============================================================
+   OFFERS PAGE GRID
+============================================================ */
+
+.offers-grid {
+    width: 90%;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.offer-card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #e5e8ef;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+}
+
+.offer-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.offer-card h3 {
+    padding: 12px 15px 4px;
+    font-size: 16px;
+}
+
+.offer-card .deal {
+    padding: 0 15px 10px;
+    color: #0052A3;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.offer-card .deal span {
+    color: #FF6600;
+    font-size: 13px;
+    margin-left: 6px;
+}
+
+.offer-card .btn {
+    display: block;
+    background: #0052A3;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 0 0 14px 14px;
+}
+
+/* ============================================================
+   ABOUT PAGE STYLES
+============================================================ */
+
+.about-content {
+    width: 90%;
+    margin: 40px auto;
+}
+
+.about-box {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    border: 1px solid #e2e6ef;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+    margin-bottom: 20px;
+}
+
+.about-box h2 {
+    margin-bottom: 10px;
+}
+
+.about-box ul {
+    list-style: disc;
+    margin-left: 20px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.stats div {
+    background: #fff;
+    width: 30%;
+    padding: 20px;
+    border-radius: 14px;
+    border: 1px solid #e2e6ef;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+}
+
+.stats h3 {
+    font-size: 24px;
+    color: #0052A3;
+}
+
+/* ============================================================
+   CONTACT PAGE
+============================================================ */
+
+.contact-section {
+    width: 90%;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 30px;
+}
+
+.contact-form,
+.contact-info {
+    background: #fff;
+    padding: 25px;
+    border-radius: 14px;
+    border: 1px solid #e2e6ef;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+}
+
+.contact-form h2,
+.contact-info h2 {
+    margin-bottom: 12px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    border: 1px solid #cfd4e6;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 12px;
+    font-size: 14px;
+}
+
+.contact-form textarea {
+    height: 130px;
+}
+
+.btn-submit {
+    background: #0052A3;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.contact-info i {
+    margin-right: 8px;
+    color: #0052A3;
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+
+.footer {
+    margin-top: 60px;
+    background: #003d7a;
+    padding: 25px 0;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+============================================================ */
+
+@media (max-width: 1024px) {
+    .offers-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .offers-grid,
+    .contact-section {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        display: block;
+    }
+
+    .stats div {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .nav-menu {
+        gap: 15px;
+    }
+}
+/* FIX: Featured Vehicles Responsiveness */
+.featured-vehicle-card {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.featured-vehicle-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* Title + price */
+.featured-vehicle-info {
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* FIX: Ensure page body never overflows horizontally */
+body, html {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* FIX: Padding on laptop screens */
+@media (max-width: 1400px) {
+  .featured-vehicles-container {
+    padding: 0 20px;
+  }
+}
+
+/* FIX: Make layout responsive on tablets & phones */
+@media (max-width: 1024px) {
+  .featured-vehicle-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .featured-vehicle-card img {
+    height: 220px;
+  }
+}
