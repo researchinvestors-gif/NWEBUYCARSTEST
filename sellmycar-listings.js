@@ -194,19 +194,19 @@ const cars = [
             photosCount: 6,
             thumbs: [
                 "images/sellmycarlisting/Jaguar/1.jpg",
-                "images/sellmycarlisting/jaguar/2.jpg",
-                "images/sellmycarlisting/jaguar/3.jpg",
-                "images/sellmycarlisting/jaguar/4.jpg",
-                "images/sellmycarlisting/jaguar/5.jpg",
+                "images/sellmycarlisting/Jaguar/2.jpg",
+                "images/sellmycarlisting/Jaguar/3.jpg",
+                "images/sellmycarlisting/Jaguar/4.jpg",
+                "images/sellmycarlisting/Jaguar/5.jpg",
                 "images/sellmycarlisting/Jaguar/6.jpg",
-                "images/sellmycarlisting/jaguar/7.jpg",
-                "images/sellmycarlisting/jaguar/8.jpg",
-                "images/sellmycarlisting/jaguar/9.jpg",
-                "images/sellmycarlisting/jaguar/10.jpg",
-                "images/sellmycarlisting/jaguar/11.jpg",
-                "images/sellmycarlisting/jaguar/12.jpg",
-                "images/sellmycarlisting/jaguar/13.jpg",
-                "images/sellmycarlisting/jaguar/14.jpg"
+                "images/sellmycarlisting/Jaguar/7.jpg",
+                "images/sellmycarlisting/Jaguar/8.jpg",
+                "images/sellmycarlisting/Jaguar/9.jpg",
+                "images/sellmycarlisting/Jaguar/10.jpg",
+                "images/sellmycarlisting/Jaguar/11.jpg",
+                "images/sellmycarlisting/Jaguar/12.jpg",
+                "images/sellmycarlisting/Jaguar/13.jpg",
+                "images/sellmycarlisting/Jaguar/14.jpg"
             ]
         }
    
@@ -402,5 +402,6 @@ renderCars(currentCars);
     });
 
 })();
+
 
 
