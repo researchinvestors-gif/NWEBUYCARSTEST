@@ -1473,3 +1473,106 @@ body, html {
     height: 220px;
   }
 }
+/* ===========================================
+   GLOBAL RESPONSIVE FIXES
+   =========================================== */
+
+/* Make all images responsive */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Prevent horizontal scrolling */
+body {
+    overflow-x: hidden;
+}
+
+/* ===========================================
+   FEATURED VEHICLES – RESPONSIVE FIX
+   =========================================== */
+
+.featured-vehicles-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Each card */
+.featured-card {
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Fix text section */
+.featured-card .details {
+    padding: 15px;
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+
+    /* featured vehicle image */
+    .featured-card img {
+        border-radius: 0;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    /* Stack sections */
+    .featured-vehicles-container {
+        flex-direction: column;
+    }
+
+    /* Prevent squashed layout */
+    .featured-card {
+        margin: 0 auto;
+        width: 95%;
+    }
+
+    /* Reduce padding */
+    .details {
+        padding: 10px;
+    }
+}
+
+/* ===========================================
+   HERO BANNER FIX
+   =========================================== */
+
+.hero-section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        padding: 0 10px;
+    }
+}
+
+/* ===========================================
+   GENERAL MOBILE FIXES
+   =========================================== */
+
+.container,
+.section-wrapper,
+.row {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+@media (max-width: 768px) {
+    h1, h2, h3, h4 {
+        font-size: 90%;
+    }
+}
+
