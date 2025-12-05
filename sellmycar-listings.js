@@ -198,15 +198,7 @@ const cars = [
                 "images/sellmycarlisting/Jaguar/3.jpg",
                 "images/sellmycarlisting/Jaguar/4.jpg",
                 "images/sellmycarlisting/Jaguar/5.jpg",
-                "images/sellmycarlisting/Jaguar/6.jpg",
-                "images/sellmycarlisting/Jaguar/7.jpg",
-                "images/sellmycarlisting/Jaguar/8.jpg",
-                "images/sellmycarlisting/Jaguar/9.jpg",
-                "images/sellmycarlisting/Jaguar/10.jpg",
-                "images/sellmycarlisting/Jaguar/11.jpg",
-                "images/sellmycarlisting/Jaguar/12.jpg",
-                "images/sellmycarlisting/Jaguar/13.jpg",
-                "images/sellmycarlisting/Jaguar/14.jpg"
+                "images/sellmycarlisting/Jaguar/6.jpg"
             ]
         }
    
@@ -262,82 +254,63 @@ function renderCars(list) {
         ? "badge-good"
         : "badge-fair";
 
-    // OUTER CLICKABLE LINK
+    // CLICKABLE CARD
     const card = document.createElement("a");
     card.href = `usedlocally-details.html?id=${car.id}`;
     card.className = "listing-card";
     card.style.textDecoration = "none";
     card.style.color = "inherit";
 
-    // INNER STRUCTURE (VALID INSIDE <a>)
-    const cardInner = document.createElement("div");
-    cardInner.className = "card-inner";
+    // INNER HTML (THE NEW MOBILE-RESPONSIVE CARD)
+    card.innerHTML = `
+      <div class="car-card">
 
-    cardInner.innerHTML = `
-      <div class="card-media">
-        <img src="${car.mainImg}" alt="${car.title}" class="main-img">
-
-        <div class="photo-count">
-          <i class="fa-solid fa-camera"></i> ${car.photosCount}
+        <div class="car-image">
+          <img src="${car.mainImg}" class="main-img" alt="${car.title}">
+          <span class="photo-count"><i class="fa-solid fa-camera"></i> ${car.thumbs.length}</span>
         </div>
 
-        <button class="heart-btn">
-          <i class="fa-regular fa-heart"></i>
-        </button>
-      </div>
+        <div class="car-info">
+          <h4 class="badge ${badgeClass}">${car.priceLabel}</h4>
 
-      <div class="card-main">
-        <div>
-          <div class="price-row">
-            <div class="price-left">
-              <span class="price">${formatPrice(car.price)}</span>
-              <span class="price-badge ${badgeClass}">${car.priceLabel}</span>
-              <span class="price-note">Price before fees & extras</span>
+            <p class="subtext">Price before fees & extras</p>
+
+            <p class="title">${car.year} ${car.make} ${car.model} ${car.variant || ""}</p>
+
+            <div class="specs-row">
+                <span><i class="fa-solid fa-calendar"></i> ${car.year}</span>
+                <span><i class="fa-solid fa-road"></i> ${car.mileage.toLocaleString()} km</span>
+                <span><i class="fa-solid fa-gear"></i> ${car.transmission}</span>
+                <span><i class="fa-solid fa-gas-pump"></i> ${car.fuel}</span>
             </div>
-          </div>
 
-          <div class="card-title">${car.title}</div>
-
-          <div class="meta-row">
-            <span><i class="fa-regular fa-calendar"></i> ${car.year}</span>
-            <span><i class="fa-solid fa-road"></i> ${car.mileage.toLocaleString()} km</span>
-            <span><i class="fa-solid fa-gear"></i> ${car.transmission}</span>
-            <span><i class="fa-solid fa-gas-pump"></i> ${car.fuel}</span>
-          </div>
-
-          <div class="tag-row">
-            <span class="tag">${car.condition}</span>
-            <span class="tag">${car.transmission}</span>
-            <span class="tag">${car.location}</span>
-          </div>
-
-          <div class="dealer-row">
-            <div>
-              <div class="dealer-name">${car.dealerName}</div>
-              <div class="dealer-location">${car.location}</div>
+            <div class="tags">
+                <span>${car.condition}</span>
+                <span>${car.transmission}</span>
+                <span>${car.location}</span>
             </div>
-            <div class="dealer-rating">
-              <i class="fa-solid fa-star"></i>
-              <span>${car.rating.toFixed(1)} (${car.reviews} reviews)</span>
-            </div>
-          </div>
-        </div>
 
-        <div class="thumb-strip">
-          ${car.thumbs
-            .map(src => `<img src="${src}" alt="${car.title} thumbnail">`)
-            .join("")}
+            <p class="dealer">${car.dealerName}<br><span class="dealer-city">${car.location}</span></p>
+
+            <div class="mini-gallery">
+                ${car.thumbs.slice(0, 3).map(t => `<img src="${t}" class="mini-thumb">`).join("")}
+            </div>
+
+
+          <div class="mini-gallery">
+            ${car.thumbs
+              .slice(0, 3)
+              .map(t => `<img src="${t}" class="mini-thumb">`)
+              .join("")}
+          </div>
         </div>
       </div>
     `;
 
-    // Append inner wrapper
-    card.appendChild(cardInner);
-
-    // Add card to page
     listingsContainer.appendChild(card);
   });
 
+  // update counters
   resultsCountEl.textContent = list.length;
   searchCountEl.textContent = list.length;
 }
@@ -402,6 +375,3 @@ renderCars(currentCars);
     });
 
 })();
-
-
-
