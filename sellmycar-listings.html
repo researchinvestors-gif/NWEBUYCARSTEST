@@ -12,22 +12,40 @@
 <body>
 
 <!-- HEADER -->
-<header class="main-header">
-  <div class="header-inner">
-    <a href="index.html" class="logo">
-      <img src="images/logo.png" alt="N We Buy Cars">
-    </a>
+<header class="header">
+    <div class="header-inner">
 
-    <nav>
-      <ul class="nav-menu">
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="buyacar.html">BUY A CAR</a></li>
-        <li><a class="active" href="sellmycar-listings.html">USED LOCALLY</a></li>
-        <li><a href="directimport.html">DIRECT IMPORT</a></li>
-      </ul>
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="N We Buy Cars">
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="nav-desktop">
+            <a href="index.html">HOME</a>
+            <a href="buyacar.html">BUY A CAR</a>
+            <a href="sellmycar-listings.html" class="active">USED LOCALLY</a>
+            <a href="directimport.html">DIRECT IMPORT</a>
+        </nav>
+
+        <!-- Hamburger -->
+        <button class="hamburger" id="hamburger">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Mobile slide down menu -->
+    <nav class="nav-mobile" id="navMobile">
+        <a href="index.html">HOME</a>
+        <a href="buyacar.html">BUY A CAR</a>
+        <a href="sellmycar-listings.html" class="active">USED LOCALLY</a>
+        <a href="directimport.html">DIRECT IMPORT</a>
     </nav>
-  </div>
+
+    <!-- Dark overlay -->
+    <div class="overlay" id="overlay"></div>
 </header>
+
 
 <main class="page-wrap">
 
@@ -126,5 +144,34 @@
 </main>
 
 <script src="sellmycar-listings.js"></script>
+
+<!-- MOBILE HEADER SCRIPT -->
+<script>
+const ham = document.getElementById("hamburger");
+const mobileNav = document.getElementById("navMobile");
+const overlay = document.getElementById("overlay");
+const icon = ham.querySelector("i");
+
+function closeMenu(){
+    mobileNav.classList.remove("show");
+    overlay.classList.remove("show");
+    icon.classList.add("fa-bars");
+    icon.classList.remove("fa-xmark");
+}
+
+ham.addEventListener("click", () => {
+    const opened = mobileNav.classList.toggle("show");
+    overlay.classList.toggle("show");
+
+    if (opened){
+        icon.classList.remove("fa-bars");
+        icon.classList.add("fa-xmark");
+    } else {
+        closeMenu();
+    }
+});
+
+overlay.addEventListener("click", closeMenu);
+</script>
 </body>
 </html>
