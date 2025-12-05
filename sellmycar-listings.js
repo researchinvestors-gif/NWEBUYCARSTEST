@@ -275,7 +275,7 @@ function renderCars(list) {
 
             <p class="subtext">Price before fees & extras</p>
 
-            <p class="title">${car.year} ${car.make} ${car.model} ${car.variant || ""}</p>
+            <p class="title">${car.title}</p>
 
             <div class="specs-row">
                 <span><i class="fa-solid fa-calendar"></i> ${car.year}</span>
@@ -375,3 +375,4 @@ renderCars(currentCars);
     });
 
 })();
+
