@@ -26,9 +26,11 @@
     </div>
 
     <!-- Mobile hamburger -->
-    <button class="hamburger" id="hamburger">
+        <!-- Mobile hamburger (single toggle button) -->
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
       <i class="fa-solid fa-bars"></i>
     </button>
+
 
     <!-- Main navigation -->
     <nav class="main-nav">
@@ -295,65 +297,106 @@
 
   <!-- JS: dropdown + slideshow -->
   <script>
-    // Dropdown
-    const dropdown = document.querySelector(".dropdown");
-    const dropdownBtn = document.getElementById("dropdownBtn");
-    const dropdownMenu = document.getElementById("dropdownMenu");
+    /* ----------------------------------------
+   DROPDOWN MENU (DESKTOP)
+----------------------------------------- */
+const dropdown = document.querySelector(".dropdown");
+const dropdownBtn = document.getElementById("dropdownBtn");
+const dropdownMenu = document.getElementById("dropdownMenu");
 
-    dropdownBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      dropdown.classList.toggle("open");
-      dropdownMenu.classList.toggle("show");
-    });
-    document.addEventListener("click", (e) => {
-      if (!dropdown.contains(e.target)) {
-        dropdown.classList.remove("open");
-        dropdownMenu.classList.remove("show");
-      }
-    });
-      // NEW: Mobile hamburger toggle
-  const hamburger = document.getElementById("hamburger");
-  const navMenu   = document.getElementById("navMenu");
+dropdownBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  dropdown.classList.toggle("open");
+  dropdownMenu.classList.toggle("show");
+});
 
-  if (hamburger && navMenu) {
-    hamburger.addEventListener("click", () => {
-      navMenu.classList.toggle("show");
-    });
+// Close dropdown when clicking outside
+document.addEventListener("click", (e) => {
+  if (!dropdown.contains(e.target)) {
+    dropdown.classList.remove("open");
+    dropdownMenu.classList.remove("show");
   }
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        dropdown.classList.remove("open");
-        dropdownMenu.classList.remove("show");
-      }
-    });
+});
 
-    // Slideshow
-    const slides = document.querySelectorAll(".slide");
-    const dotsWrap = document.getElementById("dots");
-    let i = 0;
+// Close dropdown with ESC key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    dropdown.classList.remove("open");
+    dropdownMenu.classList.remove("show");
+  }
+});
 
-    // build dots
-    slides.forEach((_, idx) => {
-      const d = document.createElement("span");
-      d.className = "dot" + (idx === 0 ? " active" : "");
-      d.addEventListener("click", () => goTo(idx));
-      dotsWrap.appendChild(d);
-    });
-    const dots = document.querySelectorAll(".dot");
 
-    function show(idx){
-      slides.forEach(s => s.classList.remove("active"));
-      dots.forEach(d => d.classList.remove("active"));
-      slides[idx].classList.add("active");
-      dots[idx].classList.add("active");
-    }
-    function next(){ i = (i+1) % slides.length; show(i); }
-    function goTo(idx){ i = idx; show(i); resetTimer(); }
+/* ----------------------------------------
+   MOBILE NAVIGATION HAMBURGER
+----------------------------------------- */
+/* ----------------------------------------
+   MOBILE NAVIGATION HAMBURGER (single toggle)
+----------------------------------------- */
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("navMenu");
+const hamburgerIcon = hamburger.querySelector("i");
 
-    let timer = setInterval(next, 4000);
-    function resetTimer(){ clearInterval(timer); timer = setInterval(next, 4000); }
+hamburger.addEventListener("click", () => {
+  const isOpen = navMenu.classList.toggle("show");
 
-    show(0);
+  if (isOpen) {
+    // change icon to X
+    hamburgerIcon.classList.remove("fa-bars");
+    hamburgerIcon.classList.add("fa-xmark");
+  } else {
+    // change icon back to bars
+    hamburgerIcon.classList.remove("fa-xmark");
+    hamburgerIcon.classList.add("fa-bars");
+  }
+});
+
+
+/* ----------------------------------------
+   SLIDESHOW
+----------------------------------------- */
+const slides = document.querySelectorAll(".slide");
+const dotsWrap = document.getElementById("dots");
+let i = 0;
+
+// Create dots dynamically
+slides.forEach((_, idx) => {
+  const d = document.createElement("span");
+  d.className = "dot" + (idx === 0 ? " active" : "");
+  d.addEventListener("click", () => goTo(idx));
+  dotsWrap.appendChild(d);
+});
+
+const dots = document.querySelectorAll(".dot");
+
+function show(idx) {
+  slides.forEach(s => s.classList.remove("active"));
+  dots.forEach(d => d.classList.remove("active"));
+  slides[idx].classList.add("active");
+  dots[idx].classList.add("active");
+}
+
+function next() {
+  i = (i + 1) % slides.length;
+  show(i);
+}
+
+function goTo(idx) {
+  i = idx;
+  show(i);
+  resetTimer();
+}
+
+let timer = setInterval(next, 4000);
+
+function resetTimer() {
+  clearInterval(timer);
+  timer = setInterval(next, 4000);
+}
+
+// Start slideshow
+show(0);
+
   </script>
   
 </body>
