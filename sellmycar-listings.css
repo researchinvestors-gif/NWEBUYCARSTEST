@@ -1,10 +1,18 @@
+/* =========================================
+   GLOBAL TOKENS & RESET
+   ========================================= */
 :root {
   --primary-blue: #0052A3;
   --accent-green: #18A957;
   --accent-amber: #FFB100;
+  --border-soft: #e1e4f0;
+  --text-main: #222;
+  --text-muted: #666;
+  --bg-page: #f5f7fb;
+  --bg-card: #ffffff;
+  --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-strong: 0 3px 10px rgba(0, 0, 0, 0.18);
 }
-
-/* ============= RESET & BASE ============= */
 
 * {
   box-sizing: border-box;
@@ -12,136 +20,199 @@
   padding: 0;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #f5f7fb;
-  color: #222;
+html, body {
+  height: 100%;
 }
 
-/* ============= HEADER (DESKTOP) ============= */
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg-page);
+  color: var(--text-main);
+}
 
-/* =====================================================================
-   CLEAN AUTOTRADER HEADER (DESKTOP + MOBILE)
-   ===================================================================== */
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-.header {
+/* ========================================
+   FINAL AUTOTRADER HEADER (DESKTOP + MOBILE)
+========================================= */
+.main-header {
+    background: #fff;
     width: 100%;
-    background: #ffffff;
-    border-bottom: 3px solid #0052A3;
+    border-bottom: 2px solid var(--primary-blue);
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
 .header-inner {
-    width: 94%;
-    margin: 0 auto;
+    max-width: 1250px;
     height: 70px;
+    margin: 0 auto;
+    padding: 0 18px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
 }
 
+/* LOGO LEFT */
 .logo img {
-    height: 50px;
+    height: 48px;
 }
 
-/* Desktop Menu */
-.nav-desktop {
+/* DESKTOP NAV RIGHT */
+.desktop-nav {
     display: flex;
-    gap: 25px;
 }
 
-.nav-desktop a {
-    text-decoration: none;
-    font-weight: bold;
-    color: #1c1c1c;
-    font-size: 15px;
+.nav-menu {
+    display: flex;
+    gap: 30px;
+    list-style: none;
 }
 
-.nav-desktop a.active {
-    color: #0052A3;
+.nav-menu li a {
+    font-size: 14px;
+    font-weight: 700;
+    color: #222;
 }
 
-/* Hamburger (hidden on desktop) */
+.nav-menu li a:hover {
+    color: var(--primary-blue);
+}
+
+.nav-menu .active {
+    color: var(--primary-blue);
+}
+
+/* HAMBURGER RIGHT (MOBILE ONLY) */
 .hamburger {
     display: none;
-    background: none;
-    border: none;
     font-size: 28px;
+    border: none;
+    background: none;
     cursor: pointer;
 }
 
-/* Mobile nav (hidden by default) */
-.nav-mobile {
+/* MOBILE MENU */
+.mobile-menu {
     position: fixed;
-    top: 70px;
+    top: 0;
+    right: -100%;   /* hidden initially */
+    width: 78%;
+    max-width: 360px;
+    height: 100%;
+    background: #fff;
+    z-index: 2000;
+    padding: 30px 22px;
+    box-shadow: -2px 0 10px rgba(39, 236, 226, 0.15);
+    transition: right 0.32s ease;
+}
+
+/* slide-in */
+.mobile-menu.show {
+    right: 0;
+}
+
+/* close icon */
+.close-mobile {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: #222;
+    cursor: pointer;
+}
+
+/* the boxes inside mobile menu */
+.mobile-menu ul {
+    margin-top: 70px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.mobile-menu ul li a {
+    display: block;
+    width: 100%;
+    padding: 18px 20px;
+    background: var(--bg-page);
+    border: 2px solid var(--primary-blue);
+    border-radius: 14px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-main);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.mobile-menu ul li a:hover {
+    background: #e6efff;
+}
+
+/* overlay */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
     left: 0;
     width: 100%;
-    background: white;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    transform: translateY(-120%);
-    transition: 0.3s ease;
-    z-index: 9999;
-}
-
-.nav-mobile.show {
-    transform: translateY(0);
-}
-
-.nav-mobile a {
-    display: block;
-    padding: 14px 20px;
-    border-bottom: 1px solid #f0f0f0;
-    text-decoration: none;
-    font-size: 17px;
-    color: #333;
-}
-
-/* Overlay */
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.35);
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.3s;
-    z-index: 9990;
+    height: 100%;
+    background: rgba(0,0,0,0.45);
+    z-index: 1500;
 }
 
 .overlay.show {
-    opacity: 1;
-    visibility: visible;
+    display: block;
 }
 
-/* MOBILE BREAKPOINT */
-@media (max-width: 900px) {
-
-    .nav-desktop {
-        display: none;
-    }
-
-    .hamburger {
-        display: block;
-        margin-left: auto;
+/* Align logo left + hamburger right on mobile */
+@media (max-width: 820px) {
+    .header-inner {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        height: 70px !important;
+        padding: 0 16px !important;
     }
 
     .logo img {
-        height: 42px;
+        height: 44px !important;
+    }
+
+    .hamburger {
+        display: block !important;
+        font-size: 30px !important;
+        color: #000;
     }
 }
 
+/* =========================================
+   PAGE WRAPPER
+   ========================================= */
+.page-wrap {
+  max-width: 1200px;
+  margin: 18px auto 40px;
+  padding: 0 12px 40px;
+}
 
-/* ============= FILTER BAR ============= */
-
+/* =========================================
+   FILTER BAR
+   ========================================= */
 .filter-bar {
-  background: #fff;
+  background: #ffffff;
   border-radius: 10px;
   padding: 12px 16px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 18px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-soft);
 }
 
 .filter-left {
@@ -150,9 +221,10 @@ body {
   align-items: center;
 }
 
+/* Category button */
 .category-select button {
   border-radius: 6px;
-  border: 1px solid #d0d4e0;
+  border: 1px solid var(--border-soft);
   background: #fff;
   padding: 9px 14px;
   font-size: 14px;
@@ -160,17 +232,19 @@ body {
 }
 
 .category-select i {
-  font-size: 12px;
+  font-size: 11px;
   margin-left: 5px;
 }
 
+/* Search box */
 .search-box {
   display: flex;
   align-items: center;
   border-radius: 6px;
-  border: 1px solid #d0d4e0;
+  border: 1px solid var(--border-soft);
   padding: 6px 10px;
   width: 280px;
+  max-width: 100%;
 }
 
 .search-box i {
@@ -185,6 +259,7 @@ body {
   font-size: 14px;
 }
 
+/* Right side buttons */
 .filter-right {
   display: flex;
   gap: 10px;
@@ -193,7 +268,7 @@ body {
 .filter-btn,
 .search-count-btn {
   border-radius: 6px;
-  border: 1px solid #d0d4e0;
+  border: 1px solid var(--border-soft);
   padding: 9px 14px;
   background: #fff;
   cursor: pointer;
@@ -213,13 +288,14 @@ body {
   color: #fff;
 }
 
-/* ============= TITLE + SORT ============= */
-
+/* =========================================
+   TITLE + SORT ROW
+   ========================================= */
 .title-row {
+  margin: 18px 0 12px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin: 20px 0 12px;
 }
 
 .title-row h1 {
@@ -229,7 +305,7 @@ body {
 
 .result-text {
   font-size: 14px;
-  color: #666;
+  color: var(--text-muted);
 }
 
 .sort-wrap {
@@ -241,219 +317,185 @@ body {
 
 .sort-wrap select {
   border-radius: 6px;
-  border: 1px solid #d0d4e0;
+  border: 1px solid var(--border-soft);
   padding: 7px 10px;
   font-size: 14px;
+  background: #fff;
 }
 
-/* ============= CONTENT LAYOUT ============= */
-
+/* =========================================
+   CONTENT LAYOUT (LISTINGS + SIDEBAR)
+   ========================================= */
 .content-wrap {
-  display: flex;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(260px, 1fr);
+  gap: 22px;
   align-items: flex-start;
 }
 
-/* ============================
-   CAR LISTING CARD – REPLICA
-   ============================ */
+/* LEFT COLUMN – LISTINGS */
+.listings-column {
+  width: 100%;
+}
 
+.listings {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* =========================================
+   LISTING CARD
+   ========================================= */
 .listing-card {
-    background: #ffffff;
-    border-radius: 12px;
-    overflow: hidden;
-    display: block;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.10);
-    transition: box-shadow 0.2s ease;
+  display: block;
+  background: var(--bg-card);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: box-shadow 0.18s ease, transform 0.18s ease;
 }
 
 .listing-card:hover {
-    box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+  box-shadow: var(--shadow-strong);
+  transform: translateY(-1px);
 }
 
-/* GRID LAYOUT */
+/* inner wrapper (you use .car-card in JS) */
 .car-card {
-    display: grid;
-    grid-template-columns: 100%;
+  display: block;
 }
 
-/* MAIN IMAGE */
+/* image area */
 .car-image {
-    position: relative;
-    width: 100%;
+  position: relative;
 }
 
 .car-image img.main-img {
-    width: 100%;
-    height: 230px;
-    object-fit: cover;
-    border-bottom: 1px solid #ececec;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
 }
 
-/* PHOTO COUNT */
 .photo-count {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    background: rgba(0,0,0,0.65);
-    color: #fff;
-    padding: 4px 8px;
-    font-size: 13px;
-    border-radius: 4px;
-    display: flex;
-    gap: 6px;
-    align-items: center;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.7);
+  color: #ffffff;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
-/* CAR INFO SECTION */
+/* text area */
 .car-info {
-    padding: 14px 16px;
+  padding: 14px 16px 16px;
 }
 
 /* PRICE */
 .car-info .price {
-    font-size: 22px;
-    font-weight: 800;
-    margin-bottom: 8px;
-    color: #000;
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 8px;
 }
 
-/* “Great Price”, “Fair Price”, etc. */
-.badge-great,
-.badge-fair,
-.badge-good {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: bold;
-    margin-bottom: 6px;
+/* BADGE (Great / Fair / Good Price) */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 4px;
 }
 
-.badge-great { background: #18A95720; color: #18A957; }
-.badge-good { background: #FFB10020; color: #FFB100; }
-.badge-fair  { background: #99999920; color: #555; }
-
-/* TITLE */
-.car-info .title {
-    font-size: 16px;
-    font-weight: 700;
-    margin: 8px 0 10px;
-    color: #1f1f1f;
-}
-
-/* TAGS: Used / Manual / Nairobi */
-.tags {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 14px;
-}
-
-.tags span {
-    background: #f2f4f7;
-    border-radius: 6px;
-    padding: 5px 10px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #333;
-}
-
-/* MINI GALLERY */
-.mini-gallery {
-    display: flex;
-    gap: 6px;
-    margin-top: 8px;
-}
-
-.mini-gallery .mini-thumb {
-    width: 70px;
-    height: 52px;
-    border-radius: 6px;
-    object-fit: cover;
-    border: 1px solid #ddd;
-}
-/* Price Badge */
-.car-info .badge {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: 700;
-    margin-bottom: 6px;
-}
-
-/* Colors */
 .badge-great { background: #18A957; color: #fff; }
 .badge-good  { background: #FFB100; color: #fff; }
-.badge-fair  { background: #b2c73d; color: #ffff; }
+.badge-fair  { background: #4995f8;    color: #fff; }
 
-/* Subtext under badge ("Price before fees & extras") */
+/* sub text */
 .subtext {
-    font-size: 12px;
-    color: #666;
-    margin-bottom: 10px;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
 }
 
-/* Specs Row */
+/* title */
+.car-info .title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 4px 0 6px;
+}
+
+/* specs row (year, mileage, transmission, fuel) */
 .specs-row {
-    display: flex;
-    gap: 14px;
-    font-size: 13px;
-    color: #333;
-    margin: 8px 0 14px;
-    flex-wrap: wrap;
+  margin: 6px 0 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 13px;
+  color: #333;
 }
 
 .specs-row i {
-    color: #444;
-    margin-right: 5px;
+  margin-right: 5px;
+  color: #444;
 }
 
-/* Dealer block */
+/* tags: Used / Manual / Nairobi */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.tags span {
+  background: #f2f4f7;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* dealer block */
 .dealer {
-    font-size: 14px;
-    font-weight: 600;
-    margin-top: 10px;
-    color: #222;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 4px;
+  margin-bottom: 6px;
 }
 
 .dealer-city {
-    font-size: 13px;
-    color: #777;
-    font-weight: 400;
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 400;
 }
 
-/* ============================
-   MOBILE RESPONSIVE
-   ============================ */
-
-@media (max-width: 720px) {
-
-    .car-image img.main-img {
-        height: 200px;
-    }
-
-    .car-info {
-        padding: 12px 14px;
-    }
-
-    .car-info .price {
-        font-size: 20px;
-    }
-
-    .car-info .title {
-        font-size: 15px;
-    }
-
-    .mini-gallery .mini-thumb {
-        width: 62px;
-        height: 46px;
-    }
+/* mini gallery */
+.mini-gallery {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
 }
 
-/* ============= SELLING CTA ============= */
+.mini-gallery .mini-thumb {
+  width: 70px;
+  height: 52px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
 
+/* =========================================
+   SELLING CTA
+   ========================================= */
 .selling-cta {
   margin-top: 20px;
   background: #e8f0ff;
@@ -470,7 +512,7 @@ body {
 
 .selling-text p {
   font-size: 13px;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .selling-btn {
@@ -482,20 +524,21 @@ body {
   font-size: 14px;
 }
 
-/* ============= SIDEBAR ============= */
-
+/* =========================================
+   SIDEBAR
+   ========================================= */
 .sidebar {
-  flex: 1;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
 .card.sidebar-box {
-  background: #fff;
+  background: #ffffff;
   border-radius: 10px;
-  padding: 14px 14px 16px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  padding: 14px 16px 16px;
+  box-shadow: var(--shadow-soft);
 }
 
 .sidebar-box h3 {
@@ -505,7 +548,7 @@ body {
 
 .sidebar-box p {
   font-size: 13px;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .sidebar-btn {
@@ -532,19 +575,26 @@ body {
 
 .review-list a,
 .dealer-list a {
-  text-decoration: none;
   color: var(--primary-blue);
 }
 
-/* ============= RESPONSIVE: DESKTOP → TABLET ============= */
+/* =========================================
+   RESPONSIVE BREAKPOINTS
+   ========================================= */
 
-@media (max-width: 960px) {
-  .content-wrap {
-    flex-direction: column;
+/* Medium screens (tablets / small laptops) */
+@media (max-width: 1024px) {
+  .header-inner {
+    height: 64px;
   }
 
-  .car-card {
-    grid-template-columns: 100%;
+  .page-wrap {
+    padding: 0 10px 32px;
+  }
+
+  .content-wrap {
+    grid-template-columns: minmax(0, 1.8fr) minmax(240px, 1fr);
+    gap: 18px;
   }
 
   .car-image img.main-img {
@@ -552,9 +602,9 @@ body {
   }
 }
 
-/* ============= RESPONSIVE: TABLET LAYOUT ============= */
+/* Tablets & large phones */
+@media (max-width: 820px) {
 
-@media (max-width: 720px) {
   .filter-bar {
     flex-direction: column;
     align-items: stretch;
@@ -563,107 +613,9 @@ body {
 
   .filter-left {
     width: 100%;
-  }
-
-  .search-box {
-    flex: 1;
-  }
-
-  .filter-right {
-    width: 100%;
-    justify-content: flex-end;
-  }
-
-  .title-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
-}
-
-/* ============= MOBILE: AUTOTRADER-STYLE HEADER & LAYOUT ============= */
-
-@media (max-width: 900px) {
-
-  body {
-    overflow-x: hidden;
-  }
-
-  /* HEADER: mobile height + smaller logo */
-  .header-inner {
-    height: 60px;
-  }
-
-  .logo img {
-    height: 42px;
-  }
-
-  /* MAIN NAV becomes fixed slide-down menu */
-  .main-nav {
-    position: fixed;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background: #ffffff;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-    transform: translateY(-110%);
-    transition: transform 0.3s ease;
-    z-index: 9998;
-  }
-
-  .main-nav.open {
-    transform: translateY(0);
-  }
-
-  .nav-menu {
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .nav-menu li {
-    border-bottom: 1px solid #f0f0f0;
-  }
-
-  .nav-menu a {
-    display: block;
-    padding: 14px 20px;
-    font-size: 16px;
-  }
-
-  /* Hamburger on the right */
-  .hamburger {
-    display: block;
-    margin-left: auto;
-  }
-
-  /* Overlay behind menu */
-  .nav-overlay {
-    display: block;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.35);
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.3s ease;
-    z-index: 9990;
-  }
-
-  .nav-overlay.show {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  /* FILTERS & CONTENT STACK */
-  .filter-bar {
     flex-direction: column;
     align-items: stretch;
-    gap: 12px;
-  }
-
-  .filter-left {
-    width: 100%;
-    flex-direction: column;
-    gap: 10px;
+    gap: 8px;
   }
 
   .search-box {
@@ -675,64 +627,49 @@ body {
     justify-content: space-between;
   }
 
-  .filter-btn,
-  .search-count-btn {
-    flex: 1;
-    text-align: center;
-  }
-
   .content-wrap {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
   .sidebar {
-    display: none;
-  }
-
-  .car-card {
-    grid-template-columns: 100%;
-  }
-
-  .car-image img.main-img {
-    height: 210px;
+    margin-top: 10px;
   }
 
   .title-row {
     flex-direction: column;
-    width: 100%;
     align-items: flex-start;
-    gap: 10px;
-  }
-
-  .sort-wrap {
-    width: 100%;
-  }
-
-  .sort-wrap select {
-    width: 100%;
-  }
-
-  .selling-cta {
-    flex-direction: column;
-    text-align: center;
-    gap: 10px;
-  }
-
-  .selling-btn {
-    width: 100%;
-  }
-
-  .page-wrap {
-    width: 94%;
+    gap: 6px;
   }
 }
 
-/* ============= EXTRA SMALL MOBILE TWEAKS ============= */
-
+/* Small phones */
 @media (max-width: 600px) {
 
+  .header-inner {
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    height: auto;
+    padding: 10px 12px;
+  }
+
+  .header-inner nav {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-menu {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .page-wrap {
+    margin-top: 12px;
+  }
+
   .car-image img.main-img {
-    height: 190px;
+    height: 200px;
   }
 
   .car-info .price {
@@ -743,7 +680,60 @@ body {
     font-size: 15px;
   }
 
-  .title-row h1 {
-    font-size: 22px;
+  .selling-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
+
+  .selling-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+/* FIX HEADER ALIGNMENT ON MOBILE */
+@media (max-width: 820px) {
+    .header-inner {
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        height: 65px !important;
+        padding: 0 16px !important;
+        gap: 0 !important;
+    }
+
+    .logo img {
+        height: 44px !important;
+    }
+
+    .hamburger {
+        display: block !important;
+        font-size: 30px !important;
+    }
+}
+
+/* REMOVE OLD BREAKING RULE */
+@media (max-width: 600px) {
+    .header-inner {
+        flex-direction: row !important;
+        height: 65px !important;
+        padding: 0 14px !important;
+    }
+}
+/* FIX: HIDE DESKTOP NAV ON MOBILE */
+@media (max-width: 900px) {
+    .desktop-nav {
+        display: none !important;
+    }
+}
+
+/* SHOW DESKTOP NAV ONLY ON LARGE SCREENS */
+@media (min-width: 901px) {
+    .desktop-nav {
+        display: block !important;
+    }
+
+    .hamburger {
+        display: none !important;
+    }
 }
