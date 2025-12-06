@@ -52,8 +52,8 @@ const cars = [
     id: 3,
     title: "2025 Toyota Starlet 1.5 XS Manual",
     price: 2889990,
-    priceLabel: "Great Price",
-    priceBadge: "great",
+    priceLabel: "Good Price",
+    priceBadge: "good",
     year: 2025,
     mileage: 9000,
     transmission: "Manual",
@@ -375,4 +375,3 @@ renderCars(currentCars);
     });
 
 })();
-
