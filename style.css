@@ -120,6 +120,7 @@ a {
 }
 
 /* Hamburger button (hidden on desktop) */
+/* Hamburger button (hidden on desktop) */
 .hamburger {
   display: none;
   background: none;
@@ -130,46 +131,91 @@ a {
   color: #000;
 }
 
+/* Mobile: show hamburger, hide nav-right and use dropdown menu */
 @media (max-width: 768px) {
-
   .nav-menu {
     position: absolute;
-    top: 80px;
-    left: 0;
+    top: 70px;
+    right: 0;
     width: 100%;
-    background: #fff;
+    background: #ffffff;
+    box-shadow: 0px 6px 20px rgba(0,0,0,0.12);
+    padding: 20px 0;
+    display: none;            /* hidden by default */
     flex-direction: column;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-    display: none;
     z-index: 9999;
   }
 
   .nav-menu.show {
-    display: flex;
-  }
-
-  .nav-menu li {
-    width: 100%;
-    text-align: center;
+    display: flex;            /* shown when JS adds .show */
   }
 
   .nav-menu a {
-    padding: 14px 20px;
-    display: block;
-    border-bottom: 1px solid #eee;
+    padding: 12px 20px;
+    text-align: center;
+    width: 100%;
     font-weight: 700;
+    border-bottom: 1px solid #f1f1f1;
+    color: #000;
+  }
+
+  .nav-right {
+    display: none !important;
   }
 
   .hamburger {
-    display: block;
+    display: block;           /* show hamburger on mobile */
     font-size: 28px;
-    margin-left: auto;
+    margin-left: auto !important;
+    margin-right: 10px !important;
+    order: 3 !important;
+  }
+
+  .logo {
+    order: 1 !important;
+  }
+}
+
+
+/* MOBILE NAV */
+@media (max-width: 768px) {
+  .nav-menu {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0px 6px 20px rgba(0,0,0,0.12);
+    padding: 20px 0;
+    display: none !important;        /* FORCE HIDE ON MOBILE */
+    flex-direction: column;
+    z-index: 9999;
+  }
+
+  .nav-menu.show {
+    display: flex !important;        /* FORCE SHOW WHEN JS ADDS .show */
+  }
+
+  .nav-menu a {
+    padding: 12px 20px;
+    text-align: center;
+    width: 100%;
+    font-weight: 700;
+    border-bottom: 1px solid #f1f1f1;
+    color: #000;
   }
 
   .nav-right {
     display: none;
   }
-}
+
+  .hamburger {
+    display: block;
+    font-size: 28px;
+  }
+  .topbar-inner {
+    justify-content: space-between !important;
+  }
 
   /* Force hamburger to the far right */
   .hamburger {
@@ -1576,5 +1622,105 @@ body {
         font-size: 90%;
     }
 }
+/* ===========================================
+   GLOBAL RESPONSIVE FIXES
+   =========================================== */
 
+/* Make all images responsive */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
 
+/* Prevent horizontal scrolling */
+body {
+    overflow-x: hidden;
+}
+
+/* ===========================================
+   FEATURED VEHICLES – RESPONSIVE FIX
+   =========================================== */
+
+.featured-vehicles-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Each card */
+.featured-card {
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Fix text section */
+.featured-card .details {
+    padding: 15px;
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+
+    /* featured vehicle image */
+    .featured-card img {
+        border-radius: 0;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    /* Stack sections */
+    .featured-vehicles-container {
+        flex-direction: column;
+    }
+
+    /* Prevent squashed layout */
+    .featured-card {
+        margin: 0 auto;
+        width: 95%;
+    }
+
+    /* Reduce padding */
+    .details {
+        padding: 10px;
+    }
+}
+
+/* ===========================================
+   HERO BANNER FIX
+   =========================================== */
+
+.hero-section {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        padding: 0 10px;
+    }
+}
+
+/* ===========================================
+   GENERAL MOBILE FIXES
+   =========================================== */
+
+.container,
+.section-wrapper,
+.row {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+@media (max-width: 768px) {
+    h1, h2, h3, h4 {
+        font-size: 90%;
+    }
+}
