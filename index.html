@@ -25,11 +25,48 @@
       </a>
     </div>
 
-    <!-- Mobile hamburger -->
-        <!-- Mobile hamburger (single toggle button) -->
-    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
-      <i class="fa-solid fa-bars"></i>
-    </button>
+    <script>
+/* ================================
+   MOBILE HAMBURGER FIX — FINAL
+================================ */
+
+const hamburger = document.getElementById("hamburger");
+const navMenu = document.getElementById("navMenu");
+const hamburgerIcon = hamburger.querySelector("i");
+
+// Toggle menu open/close
+hamburger.addEventListener("click", (e) => {
+  e.stopPropagation();
+  const isOpen = navMenu.classList.toggle("show");
+
+  if (isOpen) {
+    hamburgerIcon.classList.remove("fa-bars");
+    hamburgerIcon.classList.add("fa-xmark");
+  } else {
+    hamburgerIcon.classList.remove("fa-xmark");
+    hamburgerIcon.classList.add("fa-bars");
+  }
+});
+
+// Close menu when clicking outside
+document.addEventListener("click", (e) => {
+  if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+    navMenu.classList.remove("show");
+    hamburgerIcon.classList.remove("fa-xmark");
+    hamburgerIcon.classList.add("fa-bars");
+  }
+});
+
+// Close on ESC key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    navMenu.classList.remove("show");
+    hamburgerIcon.classList.remove("fa-xmark");
+    hamburgerIcon.classList.add("fa-bars");
+  }
+});
+</script>
+
 
 
     <!-- Main navigation -->
@@ -401,3 +438,4 @@ show(0);
   
 </body>
 </html>
+
