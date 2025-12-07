@@ -130,18 +130,17 @@ a {
   color: #000;
 }
 
-/* MOBILE NAV */
 @media (max-width: 768px) {
+
   .nav-menu {
     position: absolute;
-    top: 70px;
-    right: 0;
+    top: 80px;
+    left: 0;
     width: 100%;
-    background: #ffffff;
-    box-shadow: 0px 6px 20px rgba(0,0,0,0.12);
-    padding: 20px 0;
-    display: none;
+    background: #fff;
     flex-direction: column;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    display: none;
     z-index: 9999;
   }
 
@@ -149,26 +148,28 @@ a {
     display: flex;
   }
 
-  .nav-menu a {
-    padding: 12px 20px;
-    text-align: center;
+  .nav-menu li {
     width: 100%;
-    font-weight: 700;
-    border-bottom: 1px solid #f1f1f1;
-    color: #000;
+    text-align: center;
   }
 
-  .nav-right {
-    display: none;
+  .nav-menu a {
+    padding: 14px 20px;
+    display: block;
+    border-bottom: 1px solid #eee;
+    font-weight: 700;
   }
 
   .hamburger {
     display: block;
     font-size: 28px;
+    margin-left: auto;
   }
-  .topbar-inner {
-    justify-content: space-between !important;
+
+  .nav-right {
+    display: none;
   }
+}
 
   /* Force hamburger to the far right */
   .hamburger {
@@ -1575,4 +1576,5 @@ body {
         font-size: 90%;
     }
 }
+
 
