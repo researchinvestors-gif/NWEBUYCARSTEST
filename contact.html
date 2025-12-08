@@ -13,34 +13,49 @@
 <body>
 
 <header class="main-header">
-    <div class="header-inner">
-        <a href="index.html" class="logo">
-            <img src="images/logo.png" alt="N We Buy Cars">
-        </a>
+  <div class="header-inner">
 
-        <nav>
-            <ul class="nav-menu">
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="buyacar.html">BUY A CAR</a></li>
-                <li><a href="sellmycar-listings.html">USED LOCALLY</a></li>
-                <li><a href="directimport.html">DIRECT IMPORT</a></li>
-                <li><a href="offers.html">OFFERS</a></li>
-                <li><a href="about.html">ABOUT</a></li>
-                <li><a class="active" href="contact.html">CONTACT US</a></li>
+    <!-- LOGO (LEFT) -->
+    <a href="index.html" class="logo">
+      <img src="images/logo.png" alt="N We Buy Cars">
+    </a>
 
-                <li class="dropdown">
-                    <a href="#">MORE <i class="fa-solid fa-chevron-down"></i></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="reviews.html">Reviews</a></li>
-                        <li><a href="news.html">News</a></li>
-                        <li><a href="import-details.html">Import Process</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
+    <!-- HAMBURGER (RIGHT - MOBILE) -->
+    <button id="hamburgerBtn" class="hamburger">
+      <i class="fa-solid fa-bars"></i>
+    </button>
 
-    </div>
+    <!-- DESKTOP NAV -->
+    <nav class="desktop-nav">
+      <ul class="nav-menu">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="buyacar.html">BUY A CAR</a></li>
+        <li><a href="sellmycar-listings.html">USED LOCALLY</a></li>
+        <li><a href="directimport.html">DIRECT IMPORT</a></li>
+        <li><a href="offers.html">OFFERS</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="contact.html">CONTACT US</a></li>
+        <li><a href="reviews.html">REVIEWS</a></li>
+        <li><a href="news.html">NEWS</a></li>
+      </ul>
+    </nav>
+
+  </div>
+
+  <!-- MOBILE SLIDE MENU -->
+  <div id="mobileMenu" class="mobile-menu">
+    <a href="index.html">HOME</a>
+    <a href="buyacar.html">BUY A CAR</a>
+    <a href="sellmycar-listings.html">USED LOCALLY</a>
+    <a href="directimport.html">DIRECT IMPORT</a>
+    <a href="offers.html">OFFERS</a>
+    <a href="about.html">ABOUT</a>
+    <a href="contact.html">CONTACT US</a>
+    <a href="reviews.html">REVIEWS</a>
+    <a href="news.html">NEWS</a>
+  </div>
 </header>
+
 
 <section class="contact-hero">
     <h1>Contact Us</h1>
@@ -85,6 +100,25 @@
 <footer class="footer">
     <p>N We Buy Cars © 2025. All rights reserved.</p>
 </footer>
+<script>
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  if (hamburgerBtn && mobileMenu) {
+    hamburgerBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("show");
+
+      const icon = hamburgerBtn.querySelector("i");
+      if (mobileMenu.classList.contains("show")) {
+        icon.classList.remove("fa-bars");
+        icon.classList.add("fa-xmark");
+      } else {
+        icon.classList.remove("fa-xmark");
+        icon.classList.add("fa-bars");
+      }
+    });
+  }
+</script>
 
 </body>
 </html>
