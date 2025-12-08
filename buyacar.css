@@ -366,3 +366,63 @@ body {
     align-items: stretch;
   }
 }
+/* ===========================
+   MOBILE HEADER + HAMBURGER FIX
+   (FOR BUY A CAR PAGE)
+=========================== */
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: var(--primary-blue);
+  cursor: pointer;
+}
+
+.desktop-nav {
+  display: block;
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: #ffffff;
+  border-top: 2px solid var(--primary-blue);
+  padding: 14px;
+}
+
+.mobile-menu a {
+  padding: 12px 0;
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--primary-blue);
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-menu a.active {
+  color: var(--primary-orange);
+}
+
+.mobile-menu.show {
+  display: flex;
+}
+
+/* ===========================
+   MOBILE RESPONSIVE HEADER
+=========================== */
+@media (max-width: 900px) {
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .header-inner {
+    justify-content: space-between;
+    align-items: center;
+  }
+}
