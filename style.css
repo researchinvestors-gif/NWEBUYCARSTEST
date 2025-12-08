@@ -1724,3 +1724,103 @@ body {
         font-size: 90%;
     }
 }
+/* ==============================
+   FINAL GLOBAL HAMBURGER SYSTEM
+============================== */
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #0052A3;
+}
+
+.desktop-nav {
+  display: block;
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: #fff;
+  border-top: 3px solid #0052A3;
+  padding: 14px;
+}
+
+.mobile-menu a {
+  padding: 12px 0;
+  font-weight: bold;
+  color: #0052A3;
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-menu.show {
+  display: flex;
+}
+
+/* MOBILE MODE */
+@media (max-width: 900px) {
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .hamburger {
+    display: block !important;
+    margin-left: auto;
+    font-size: 30px;
+  }
+
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+/* ==============================
+   PAGE-SAFE HAMBURGER OVERRIDE
+   (Does NOT break index.html)
+============================== */
+
+/* New system only */
+@media (max-width: 900px) {
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .hamburger {
+    display: block !important;
+    margin-left: auto;
+    font-size: 30px;
+  }
+
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* KEEP index.html system intact */
+@media (max-width: 768px) {
+  .topbar-inner {
+    display: flex !important;
+  }
+
+  .nav-menu {
+    display: none;
+  }
+
+  .nav-menu.show {
+    display: flex;
+  }
+
+  .nav-right {
+    display: none !important;
+  }
+
+  #hamburger {
+    display: block !important;
+  }
+}
