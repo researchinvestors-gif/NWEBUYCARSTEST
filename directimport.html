@@ -17,12 +17,19 @@
 
 <header class="main-header">
   <div class="header-inner">
+
+    <!-- LOGO (LEFT) -->
     <a href="index.html" class="logo">
       <img src="images/logo.png" alt="N We Buy Cars">
-      <link rel="icon" type="image/x-icon" href="/images/favicon.jpg">
     </a>
 
-    <nav>
+    <!-- HAMBURGER (RIGHT - MOBILE ONLY) -->
+    <button id="hamburgerBtn" class="hamburger">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <!-- DESKTOP NAV -->
+    <nav class="desktop-nav">
       <ul class="nav-menu">
         <li><a href="index.html">HOME</a></li>
         <li><a href="buyacar.html">BUY A CAR</a></li>
@@ -30,8 +37,18 @@
         <li class="active"><a href="directimport.html">DIRECT IMPORT</a></li>
       </ul>
     </nav>
+
+  </div>
+
+  <!-- MOBILE SLIDE MENU -->
+  <div id="mobileMenu" class="mobile-menu">
+    <a href="index.html">HOME</a>
+    <a href="buyacar.html">BUY A CAR</a>
+    <a href="sellmycar-listings.html">USED LOCALLY</a>
+    <a href="directimport.html" class="active">DIRECT IMPORT</a>
   </div>
 </header>
+
 
 <main class="di-page">
 
@@ -222,6 +239,22 @@
   // initial load
   applyFilters();
 </script>
+<script>
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const mobileMenu = document.getElementById("mobileMenu");
 
+  hamburgerBtn.addEventListener("click", () => {
+    mobileMenu.classList.toggle("show");
+
+    const icon = hamburgerBtn.querySelector("i");
+    if (mobileMenu.classList.contains("show")) {
+      icon.classList.remove("fa-bars");
+      icon.classList.add("fa-xmark");
+    } else {
+      icon.classList.remove("fa-xmark");
+      icon.classList.add("fa-bars");
+    }
+  });
+</script>
 </body>
 </html>
